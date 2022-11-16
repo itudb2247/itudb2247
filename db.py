@@ -26,6 +26,7 @@ arg_create_table_player_power =  """CREATE TABLE player_power(
                                 ON DELETE CASCADE
                     )"""
 #cur.execute(arg_create_table_player_power)
+#sdasddsdsf
 #con.commit()
 
 def insert_player(row):
