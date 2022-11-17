@@ -1,2 +1,2 @@
 16.11.2022
-Create classes,insert function and set up database
+Create classes,insert function and set up database.
