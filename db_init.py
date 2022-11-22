@@ -137,8 +137,8 @@ def fill_tables():
     #CSVs
     df_player = pd.read_csv("../csv/tbl_player.csv",usecols=["int_player_id","str_player_name","dt_date_of_birth","int_height","int_weight","int_overall_rating","int_potential_rating","str_best_position","int_best_overall_rating"	,"int_value","int_wage"	,"str_player_image_url","int_team_id","str_nationality"])
     df_player_attacking = pd.read_csv("../csv/tbl_player_attacking.csv", dtype=int)
-    df_player_power = pd.read_csv("./csv/tbl_player_power.csv", dtype=int)
-    df_player_movement = pd.read_csv("./csv/tbl_player_power.csv", dtype=int)
+    df_player_power = pd.read_csv("../csv/tbl_player_power.csv", dtype=int)
+    df_player_movement = pd.read_csv("../csv/tbl_player_power.csv", dtype=int)
 
     #INSERTION
     df_player.apply(lambda x: insert(query_insert_player, x), axis=1)

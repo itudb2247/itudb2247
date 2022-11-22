@@ -1,0 +1,2 @@
+22.11.2022
+Player and player_attacking tables are created. Player, PlayerAttacking classes and update, insert and delete functions for these classes are created.
