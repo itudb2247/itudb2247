@@ -81,6 +81,9 @@ class Power:
     def get_player_id(self):
         return self.player_id
 
+    def get_power(self):
+        return(self.strength, self.long_shots, self.shot_power, self.jumping, self.stamina, self.player_id)
+
 
 class Movement:
     def __init__(self, movement_id, reactions_id, balance, acceleration, sprint_speed, agility, player_id):
@@ -97,3 +100,6 @@ class Movement:
 
     def get_player_id(self):
         return self.player_id
+
+    def get_movement(self):
+        return(self.reactions_id, self.balance, self.acceleration, self.sprint_speed, self.agility, self.player_id)
