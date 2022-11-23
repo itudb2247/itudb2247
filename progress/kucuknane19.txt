@@ -1,0 +1,9 @@
+Week 1 | 16.11.2022
+    -Created db_init.py for initializing tables
+    -Created classes.py for representation
+    -Created database.py for CRUD operation functions
+
+Week 2 | 23.11.2022
+    -Arranged the classes according to the attribute order in the csv files
+    -Corrected database insert, delete and update functions
+    -Added fill_tables() function in db_init for reading from csv files into the database tables and corrected the order of table attributes
