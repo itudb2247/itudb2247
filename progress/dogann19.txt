@@ -1,2 +1,5 @@
 22.11.2022
 Player and player_attacking tables are created. Player, PlayerAttacking classes and update, insert and delete functions for these classes are created.
+
+28-29.11.2022
+main.py file is created. int_team_id column of tbl_player converted into integer type. get_player and get_player_attacking methods are created. Some bugs in Database methods are corrected. gitignore file is created.
