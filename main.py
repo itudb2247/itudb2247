@@ -12,10 +12,21 @@ except:
     print("something went wrong")
 
 db = Database()
-db.insert_player(Player("Nadide Bilge Doğan", "2001-7-13", 168, 52, 1,
-                        2, "CF", 3, 4, 5, "https://image", 13, "Turkish"))
-# serial does not working
+db.insert_player(Player("Nadide Bilge Doğan", "2001-7-13", 168, 52, 1, 2, "CF", 3, 4, 5, "https://image", 13, "Turkish"))
 
-db.insert_player_attacking(PlayerAttacking(19003, 1, 2,
-                                           3, 4, 5))
+db.insert_player_attacking(PlayerAttacking( 18915,1, 2,3, 4, 5))
+
+
+app=flask.Flask(__name__)
+#URL mapping of the associated function
+@app.route('/')
+
+#Specify the server response to return
+def first_application(): 
+ return 'Welcome hÃ¼soo'
+ 
+#The main driver function 
+if __name__ == '__main__': 
+ #Run the application 
+ app.run()
 
