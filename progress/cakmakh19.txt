@@ -1,2 +1,4 @@
 16.11.2022
 Create classes,insert function and set up database.
+07.12.2022
+Preprocess the data ,fix dublicated issue.Try database function.Solve Serial problem.Merge team member function.
