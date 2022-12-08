@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<h1>Player Attacking</h1>
+<ul>
+    <li><a href="{{ url_for('player_page') }}">List player</a></li>
+    <li><a href="{{ url_for('home_page') }}">Home</a></li>
+</ul>
+
+{% if player_attacking_list %}
+<table>
+    {%for player_attacking in player_attacking_list %}
+    <tr>
+        <th>attacking_id:</th>
+        <td>{{ player_attacking.crossing }}</td>
+    </tr>
+    {%endfor%}
+</table>
+{%endif%}
+<!-- <table>
+    <tr>
+        <th>attacking_id:</th>
+        <td>{{ player_attacking_list.attacking_id }}</td>
+    </tr>
+    {% if player_attacking_list.player_id %}
+    <tr>
+        <th>player_id:</th>
+        <td>{{ player_attacking_list.player_id }}</td>
+    </tr>
+    {% endif %}
+    {% if player_attacking_list.crossing %}
+    <tr>
+        <th>crossing:</th>
+        <td>{{ player_attacking_list.crossing }}</td>
+    </tr>
+    {% endif %}
+    {% if player_attacking_list.finishing %}
+    <tr>
+        <th>finishing:</th>
+        <td>{{ player_attacking_list.finishing }}</td>
+    </tr>
+    {% endif %}
+    {% if player_attacking_list.heading_accuracy %}
+    <tr>
+        <th>heading_accuracy:</th>
+        <td>{{ player_attacking_list.heading_accuracy }}</td>
+    </tr>
+    {% endif %}
+    {% if player_attacking_list.short_passing %}
+    <tr>
+        <th>short_passing:</th>
+        <td>{{ player_attacking_list.short_passing }}</td>
+    </tr>
+    {% endif %}
+    {% if player_attacking_list.volleys %}
+    <tr>
+        <th>volleys:</th>
+        <td>{{ player_attacking_list.volleys }}</td>
+    </tr>
+    {% endif %}
+</table> -->
+{% endblock %}

@@ -54,15 +54,23 @@ class Database:
         statement = """SELECT FROM player WHERE (player_id=%s)"""
         self.cursor.execute(statement, (player_id))
         player = self.cursor.fetchone()
-        self.connection.commit()
+        # self.connection.commit()
         return player
 
     def get_player_attacking(self, player_attacking_id):
         statement = """SELECT FROM player WHERE (player_attacking_id=%s)"""
         self.cursor.execute(statement, (player_attacking_id))
         player_attacking = self.cursor.fetchone()
-        self.connection.commit()
+        # self.connection.commit()
         return player_attacking
+    
+    def get_player_list(self):
+        self.cursor.execute("""SELECT * FROM player """)
+        return  self.cursor.fetchall()
+    
+    def get_player_attacking_list(self):
+        self.cursor.execute("""SELECT * FROM player_attacking """)
+        return  self.cursor.fetchall()
 # -------------ANIL----------------------------------
 
     def insert_player_profile(self, player_profile):
