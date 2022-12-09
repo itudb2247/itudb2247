@@ -2,3 +2,7 @@
 Create classes,insert function and set up database.
 07.12.2022
 Preprocess the data ,fix dublicated issue.Try database function.Solve Serial problem.Merge team member function.
+09.12.2022
+-Created views.py that includes flask functions that can perform insert and delete on web application
+-Created html files for web application
+-Some issues regarding database and classes are fixed
