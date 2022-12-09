@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content=""width=device-width, initial-scale-1.0>
+            <title>Home</title>
+    </head>
+    <body>
+        <div>
+            <h1>Home Page</h1>
+            <p>Hello {{name}} </p>
+        </div>
+        <div class="container">
+            {% for message in get_flashed_messages() %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+            {% block content %} {% endblock %}
+        </div>
+        <div>
+            <a href="{{ url_for('views.add_player') }}">Add Player</a>
+            <br>
+            <a href="{{ url_for('views.add_player_mentality') }}">Add Player Mentality</a>
+            <br>
+            <a href="{{ url_for('views.add_player_goalkeeping') }}">Add Player Goalkeeping</a>
+            <br>
+            <a href="{{ url_for('views.add_player_profile') }}">Add Player Profile</a>
+            <br>
+            <a href="{{ url_for('views.add_player_skills') }}">Add Player Skill</a>
+            
+            <br>
+            <br>
+
+            <a href="{{ url_for('views.delete_player') }}">Delete Player</a>
+            <br>
+            <a href="{{ url_for('views.delete_player_mentality') }}">Delete Player Mentality</a>
+            <br>
+            <a href="{{ url_for('views.delete_player_goalkeeping') }}">Delete Player Goalkeeping</a>
+            <br>
+            <a href="{{ url_for('views.delete_player_profile') }}">Delete Player Profile</a>
+            <br>
+            <a href="{{ url_for('views.delete_player_skills') }}">Delete Player Skill</a>
+
+        </div>
+        
+    </body>
+</html>

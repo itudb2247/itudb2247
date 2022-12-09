@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content=""width=device-width, initial-scale-1.0>
+            <title>Delete Player Mentality</title>
+    </head>
+    <body>
+        <div>
+
+            <form action="{{ url_for('views.delete_player_mentality') }}" method="POST">
+                <label for="name">Mentality ID</label>
+                <br>
+                <input type="text" name="mentality_id"
+                       value="{{ request.form['mentality_id'] }}"></input>
+                <br>
+
+                <input type="submit" value="Delete Mentality"
+                        class="btn btn-danger btn-sm"
+                        onclick="return confirm('Are you sure you want to delete this mentality?')">
+            </form>
+
+        </div>
+        
+    </body>
+</html>

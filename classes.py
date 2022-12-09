@@ -32,7 +32,7 @@ class PlayerAttacking:
 
 
 class player_profile:
-    def __init__(self, profile_id, skill_moves, international_reputations, work_rate, body_type, preferred_foot, weak_foot, player_id):
+    def __init__(self,player_id, preferred_foot,weak_foot,skill_moves, international_reputations, work_rate, body_type,profile_id=None):
         self.profile_id = profile_id
         self.skill_moves = skill_moves
         self.international_reputations = international_reputations
@@ -44,7 +44,7 @@ class player_profile:
 
 
 class player_skills:
-    def __init__(self, skill_id, dribbling, curve, fk_accuracy, long_passing, ball_control, player_id):
+    def __init__(self, player_id,dribbling, curve, fk_accuracy, long_passing, ball_control,skill_id=None):
         self.skill_id = skill_id
         self.curve = curve
         self.dribbling = dribbling
@@ -55,7 +55,7 @@ class player_skills:
 
 
 class Goalkeeping:
-    def __init__(self, goalkeeping_id, diving, handling, kicking, positioning, reflexes,player_id):
+    def __init__(self, diving, handling, kicking, positioning, reflexes, player_id, goalkeeping_id=None):
         self.goalkeeping_id = goalkeeping_id
         self.player_id = player_id
         self.diving = diving
@@ -64,16 +64,9 @@ class Goalkeeping:
         self.positioning = positioning
         self.reflexes = reflexes
 
-    def set_goalkeeping_id(self, goalkeeping_id):
-        self.goalkeeping_id = goalkeeping_id
-
-    def get_player_id(self):
-        return self.player_id
-
 
 class Mentality:
-    def __init__(self, mentality_id, aggression, interceptions, positioning, vision, penalties, composure,  player_id):
-        self.mentality_id = mentality_id
+    def __init__(self, aggression, interceptions, positioning, vision, penalties, composure,  player_id, mentality_id=None):
         self.player_id = player_id
         self.aggression = aggression
         self.interceptions = interceptions
@@ -81,12 +74,7 @@ class Mentality:
         self.vision = vision
         self.penalties = penalties
         self.composure = composure
-
-    def set_mentality_id(self, mentality_id):
         self.mentality_id = mentality_id
-
-    def get_player_id(self):
-        return self.player_id
 
 
 class Power:

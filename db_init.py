@@ -1,18 +1,21 @@
 import psycopg2 as dbapi
 import pandas as pd
-import numpy
+
+
 INIT = [
+
     """
     CREATE TABLE IF NOT EXISTS team(
         team_id INTEGER NOT NULL,
         PRIMARY KEY (team_id)
     )
-""",
+    """,
+
     """
     CREATE TABLE IF NOT EXISTS player(
         player_id SERIAL NOT NULL,
         player_name VARCHAR(200) NOT NULL UNIQUE,
-        date_of_birth DATE,
+        date_of_birth VARCHAR(200),
         height INTEGER,
         weight INTEGER,
         overall_rating INTEGER,
@@ -29,7 +32,8 @@ INIT = [
             REFERENCES team (team_id)
             ON UPDATE CASCADE ON DELETE SET NULL
     )
-""",
+    """,
+
     """
     CREATE TABLE IF NOT EXISTS player_attacking(
         attacking_id SERIAL NOT NULL,
@@ -44,7 +48,8 @@ INIT = [
             REFERENCES player (player_id)
             ON UPDATE CASCADE ON DELETE SET NULL 
     )
-""",
+    """,
+
     """
     CREATE TABLE IF NOT EXISTS player_profile(
         profile_id SERIAL NOT NULL ,
@@ -61,7 +66,8 @@ INIT = [
             ON UPDATE CASCADE ON DELETE CASCADE
     )
 
-""",
+    """,
+    
     """
     CREATE TABLE IF NOT EXISTS player_skills(
         skill_id  SERIAL NOT NULL ,
@@ -76,8 +82,8 @@ INIT = [
             REFERENCES player (player_id)
             ON UPDATE CASCADE ON DELETE CASCADE
     )
+    """,
 
-""",
     """CREATE TABLE IF NOT EXISTS player_power(
                             power_id SERIAL PRIMARY KEY,
                             strength INTEGER,
@@ -91,6 +97,7 @@ INIT = [
                                 ON UPDATE CASCADE
                                 ON DELETE CASCADE
     )""",
+
     """CREATE TABLE IF NOT EXISTS player_movement(
                             movement_id SERIAL PRIMARY KEY,
                             reactions_id INTEGER,
@@ -104,29 +111,32 @@ INIT = [
                                 ON UPDATE CASCADE
                                 ON DELETE CASCADE
     )""",
+
     """
     CREATE TABLE IF NOT EXISTS player_goalkeeping (
-        goalkeeping_id  SERIAL PRIMARY KEY NOT NULL,
+        goalkeeping_id  SERIAL NOT NULL,
+        player_id       SERIAL, 
         diving          INT,
         handling        INT,
         kicking         INT,
         positioning     INT,
-        reflexes        INT,
-        player_id       SERIAL,
+        reflexes        INT, 
+        PRIMARY KEY (goalkeeping_id), 
         FOREIGN KEY (player_id) REFERENCES player(player_id) ON DELETE CASCADE ON UPDATE CASCADE
     )
     """,
 
     """
     CREATE TABLE IF NOT EXISTS player_mentality (
-        mentality_id    SERIAL PRIMARY KEY NOT NULL,
+        mentality_id    SERIAL NOT NULL,
+        player_id       SERIAL, 
         aggression      INT,
         interceptions   INT,
         positioning     INT,
         vision          INT,
         penalties       INT,
-        composure       INT,
-        player_id       SERIAL,
+        composure       INT,  
+        PRIMARY KEY (mentality_id),       
         FOREIGN KEY (player_id) REFERENCES player(player_id) ON DELETE CASCADE ON UPDATE CASCADE
     )
     """
@@ -139,27 +149,26 @@ def create_tables():
     username = 'postgres'
     pwd = 'postgres'
     port_id = 5432
-    with dbapi.connect(host=hostname,
-                       dbname=database,
-                       user=username,
-                       password=pwd,
-                       port=port_id) as connection:
+
+    with dbapi.connect( host = hostname,
+                        dbname = database,
+                        user = username,
+                        password = pwd,
+                        port = port_id) as connection:
         cursor = connection.cursor()
         for statement in INIT:
             cursor.execute(statement)
         connection.commit()
 
-
 def insert(query, row, cur):
     values = tuple(row)
     cur.execute(query, values)
 
-
 def fill_tables():
-    # QUERIES
-    con = dbapi.connect(
-        "host='localhost' dbname='Fifa' user='postgres' password='postgres'")
+
+    con = dbapi.connect("host='localhost' dbname='Fifa' user='postgres' password='postgres'")
     cur = con.cursor()
+    #QUERIES
     query_insert_team = """INSERT INTO team (team_id) VALUES(%s)"""
     query_insert_player = """INSERT INTO player(player_name, date_of_birth, height, weight, overall_rating,potential_rating, best_position, best_overall_rating, value, wage,player_image_url,nationality,team_id ) VALUES( %s, %s, %s, %s, %s, %s,%s,%s, %s, %s, %s, %s,%s)"""
     query_insert_player_attacking = """INSERT INTO player_attacking(crossing, finishing,heading_accuracy, short_passing, volleys) VALUES(%s, %s, %s, %s, %s)"""
@@ -179,7 +188,7 @@ def fill_tables():
     df_player_mentality = pd.read_csv("./data//tbl_player_mentality.csv", dtype=int, usecols=["int_aggression", "int_interceptions", "int_positioning", "int_vision", "int_penalties", "int_composure"])
     df_team = pd.read_csv("./data/tbl_team.csv",usecols=["int_team_id"], dtype=int)
     df_player = pd.read_csv("./data/n.csv", usecols=["str_player_name", "dt_date_of_birth", "int_height", "int_weight", "int_overall_rating", "int_potential_rating",
-                            "str_best_position", "int_best_overall_rating", "int_value", "int_wage", "str_player_image_url", "int_team_id", "str_nationality"])
+                            "str_best_position", "int_best_overall_rating", "int_value", "int_wage", "str_player_image_url", "int_team_id", "str_nationality"],dtype={"dt_date_of_birth":str})
     # fill the null team id values with -1 which is no team
     df_player["int_team_id"] = df_player["int_team_id"].fillna(-1)
     print(df_player)

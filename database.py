@@ -29,7 +29,7 @@ class Database:
 
     def delete_player(self, player_id):
         statement = """DELETE FROM player WHERE (player_id=%s)"""
-        self.cursor.execute(statement, (player_id))
+        self.cursor.execute(statement, (player_id,))
         self.connection.commit()
 
     def insert_player_attacking(self, player_attacking):
@@ -66,23 +66,23 @@ class Database:
 # -------------ANIL----------------------------------
 
     def insert_player_profile(self, player_profile):
-        self.cursor.execute("INSERT INTO player_profile VALUES('%s', '%s', %s, '%s', '%s','%s', %s,%s)",
-                            (player_profile.profile_id, player_profile.skill_moves, player_profile.international_reputations, player_profile.work_rate, player_profile.body_type, player_profile.preferred_foot, player_profile.weak_foot, player_profile.player_id))
+        self.cursor.execute("INSERT INTO player_profile(player_id,preferred_foot ,weak_foot,skill_moves,international_reputations,work_rate,body_type) VALUES(%s, %s, %s, %s, %s,%s, %s)",
+                            (player_profile.player_id ,player_profile.preferred_foot,player_profile.weak_foot,player_profile.skill_moves, player_profile.international_reputations, player_profile.work_rate, player_profile.body_type))
         self.connection.commit()
 
     def delete_player_profile(self, profile_id):
         self.cursor.execute(
-            "DELETE FROM player_profile WHERE profile_id='%s'", (profile_id,))
+            "DELETE FROM player_profile WHERE profile_id=%s", (profile_id,))
         self.connection.commit()
 
     def insert_player_skills(self, player_skills):
-        self.cursor.execute("INSERT INTO player_skills VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-                            (player_skills.skill_id, player_skills.dribbling, player_skills.curve, player_skills.fk_accuracy, player_skills.long_passing, player_skills.ball_control, player_skills.player_id))
+        self.cursor.execute("INSERT INTO player_skills(player_id,dribbling,curve,fk_accuracy,long_passing,ball_control)VALUES(%s, %s, %s, %s, %s, %s)",
+                            (player_skills.player_id, player_skills.dribbling, player_skills.curve, player_skills.fk_accuracy, player_skills.long_passing, player_skills.ball_control))
         self.connection.commit()
 
     def delete_player_skills(self, skill_id):
         self.cursor.execute(
-            "DELETE FROM player_skills WHERE skill_id='%s'", (skill_id,))
+            "DELETE FROM player_skills WHERE skill_id=%s", (skill_id,))
         self.connection.commit()
 
 # -------------MAHMUT----------------------------------
@@ -117,11 +117,12 @@ class Database:
         self.cursor.execute(
             "DELETE FROM player_movement WHERE movement_id='%s'", (movement_id,))
         self.connection.commit()
-# -------------HAİN SILA----------------------------------
-    # player_mentality
+# -------------SILA----------------------------------
+
+    # player_goalkeeping
 
     def insert_mentality(self, mentality):
-        self.cursor.execute("INSERT INTO player_mentality VALUES('%s', '%s','%s', '%s', '%s', '%s', '%s')", (
+        self.cursor.execute("INSERT INTO player_mentality(player_id, aggression, interceptions, positioning, vision, penalties, composure) VALUES(%s, %s, %s, %s, %s, %s, %s)", (
             mentality.player_id, mentality.aggression, mentality.interceptions,
             mentality.positioning, mentality.vision, mentality.penalties,
             mentality.composure))
@@ -132,8 +133,9 @@ class Database:
 
         # mentality.set_mentality_id(mentality.get_player_id)
         self.connection.commit()
-
+    
     def update_mentality(self, mentality):
+        #if not all values are to be changed, dont change those in mentality object
         self.cursor.execute("UPDATE player_mentality SET aggression='%s', interceptions='%s', positioning='%s', vision='%s', "
                             "penalties='%s', composure='%s', player_id='%s'", (mentality.player_id, mentality.aggression, mentality.interceptions,
                                                                                mentality.positioning, mentality.vision,
@@ -143,12 +145,20 @@ class Database:
 
     def delete_mentality(self, mentality_id):
         self.cursor.execute(
-            "DELETE FROM player_mentality WHERE mentality_id='%s'", (mentality_id,))
+            "DELETE FROM player_mentality WHERE mentality_id=%s", (mentality_id,))
         self.connection.commit()
+
+    #search and get player
+    def get_player(self, player_name):
+        self.cursor.execute(
+            "SELECT * FROM player WHERE player_name LIKE %s", (player_name,))
+        results = self.cursor.fetchall()
+        return results
+    
 
     # player_goalkeeping
     def insert_goalkeeping(self, goalkeeping):
-        self.cursor.execute("INSERT INTO player_goalkeeping VALUES('%s', '%s','%s', '%s', '%s', '%s', '%s')", (
+        self.cursor.execute("INSERT INTO player_goalkeeping(player_id, diving, handling, kicking, positioning, reflexes) VALUES(%s, %s, %s, %s, %s, %s)", (
             goalkeeping.player_id, goalkeeping.diving,
             goalkeeping.handling, goalkeeping.kicking,
             goalkeeping.positioning, goalkeeping.reflexes))
@@ -164,5 +174,5 @@ class Database:
 
     def delete_goalkeeping(self, goalkeeping_id):
         self.cursor.execute(
-            "DELETE FROM player_goalkeeping WHERE goalkeeping_id='%s'", (goalkeeping_id,))
+            "DELETE FROM player_goalkeeping WHERE goalkeeping_id=%s", (goalkeeping_id,))
         self.connection.commit()
