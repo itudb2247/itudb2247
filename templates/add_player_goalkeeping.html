@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content=""width=device-width, initial-scale-1.0>
+            <title>Add Player Mentality</title>
+    </head>
+    <body>
+        <div>
+
+            <form method="post">
+                <label for="player_id">Player ID</label>
+                <br>
+                <input type="text" name="player_id"
+                       value="{{ request.form['player_id'] }}"></input>
+                <br>
+
+                <label for="diving">Diving</label>
+                <br>
+                <input type="text" name="diving"
+                       value="{{ request.form['diving'] }}"></input>
+                <br>
+
+                <label for="handling">Handling</label>
+                <br>
+                <input type="text" name="handling"
+                       value="{{ request.form['handling'] }}"></input>
+                <br>
+
+                <label for="kicking">Kicking</label>
+                <br>
+                <input type="text" name="kicking"
+                       value="{{ request.form['kicking'] }}"></input>
+                <br>
+
+                <label for="positioning">Positioning</label>
+                <br>
+                <input type="text" name="positioning"
+                       value="{{ request.form['positioning'] }}"></input>
+                <br>
+
+                <label for="reflexes">Reflexes</label>
+                <br>
+                <input type="text" name="reflexes"
+                       value="{{ request.form['reflexes'] }}"></input>
+                <br>
+
+                
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
+
+    </body>
+</html>

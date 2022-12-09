@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content=""width=device-width, initial-scale-1.0>
+            <title>Add Player Profile</title>
+    </head>
+    <body>
+        <div>
+
+            <form method="post">
+                <label for="player_id">Player ID</label>
+                <br>
+                <input type="text" name="player_id"
+                       value="{{ request.form['player_id'] }}"></input>
+                <br>
+
+                <label for="preferred_foot">Preferred Foot</label>
+                <br>
+                <input type="text" name="preferred_foot"
+                       value="{{ request.form['preferred_foot'] }}"></input>
+                <br>
+
+                <label for="weak_foot">Weak Foot</label>
+                <br>
+                <input type="text" name="weak_foot"
+                       value="{{ request.form['weak_foot'] }}"></input>
+                <br>
+
+                <label for="skill_moves">Skill Moves</label>
+                <br>
+                <input type="text" name="skill_moves"
+                       value="{{ request.form['skill_moves'] }}"></input>
+                <br>
+
+                <label for="international_reputations">International Reputations</label>
+                <br>
+                <input type="text" name="international_reputations"
+                       value="{{ request.form['international_reputations'] }}"></input>
+                <br>
+
+                <label for="work_rate">Work Rate</label>
+                <br>
+                <input type="text" name="work_rate"
+                       value="{{ request.form['work_rate'] }}"></input>
+                <br>
+
+                <label for="body_type">Body Type</label>
+                <br>
+                <input type="text" name="body_type"
+                       value="{{ request.form['body_type'] }}"></input>
+                <br>
+
+                
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
+
+    </body>
+</html>

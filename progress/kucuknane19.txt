@@ -7,3 +7,8 @@ Week 2 | 23.11.2022
     -Arranged the classes according to the attribute order in the csv files
     -Corrected database insert, delete and update functions
     -Added fill_tables() function in db_init for reading from csv files into the database tables and corrected the order of table attributes
+
+Week 3 | 09.12.2022
+    -Created views.py that includes flask functions that can perform insert and delete on web application
+    -Created html files for web application
+    -Some issues regarding database and classes are fixed

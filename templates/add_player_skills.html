@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content=""width=device-width, initial-scale-1.0>
+            <title>Add Player Skills</title>
+    </head>
+    <body>
+        <div>
+
+            <form method="post">
+                <label for="player_id">Player ID</label>
+                <br>
+                <input type="text" name="player_id"
+                       value="{{ request.form['player_id'] }}"></input>
+                <br>
+
+                <label for="dribbling">Dribbling</label>
+                <br>
+                <input type="text" name="dribbling"
+                       value="{{ request.form['dribbling'] }}"></input>
+                <br>
+
+                <label for="curve">Curve</label>
+                <br>
+                <input type="text" name="curve"
+                       value="{{ request.form['curve'] }}"></input>
+                <br>
+
+                <label for="fk_accuracy">Freekick Accuracy</label>
+                <br>
+                <input type="text" name="fk_accuracy"
+                       value="{{ request.form['fk_accuracy'] }}"></input>
+                <br>
+
+                <label for="long_passing">Long Passing</label>
+                <br>
+                <input type="text" name="long_passing"
+                       value="{{ request.form['long_passing'] }}"></input>
+                <br>
+
+                <label for="ball_control">Ball Control</label>
+                <br>
+                <input type="text" name="ball_control"
+                       value="{{ request.form['ball_control'] }}"></input>
+                <br>
+
+                
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
+
+    </body>
+</html>
