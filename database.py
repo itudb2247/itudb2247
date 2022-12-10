@@ -180,7 +180,7 @@ class Database:
         
   # -------------DARIA----------------------------------     
   
-  #team
+    #team
     def insert_team(self,team):
       statement="""INSERT INTO team(team_name,league,overall,attack,midfield,defense,international_prestige,domestic_prestige,transfer_budget) VALUES( '%s','%s','%s','%s','%s','%s','%s','%s','%s')"""
       self.cursor.execute(statement,(team.team_name,team.league,team.overall,
@@ -202,12 +202,12 @@ class Database:
     def get_team(self,team):
       statement="""SELECT FROM team WHERE team_id=%s"""
       self.cursors.execute(statement,(team_id))
-      player=self.cursor.fetchone()
+      team=self.cursor.fetchone()
       self.connection.commit()
       return team
     
       
- #team_tactics
+    #team_tactics
     def insert_team_tactics(self,team_tactics):
       statement="""INSERT INTO team_tactics(defensive_style,team_width,depth,offensive_style,width,players_in_box,corners,freekicks) VALUES('%s','%s','%s','%s','%s','%s','%s','%s')"""
       self.cursor.execute(statement,(team_tactics.defensive_style,team_tactics.team_width,team_tactics.depth,team_tactics.offensive_style,
@@ -215,8 +215,7 @@ class Database:
       self.connection.commit()
     
     def update_team_tactics(self,team_tactics):
-      statement="""UPDATE team_tactics SET defensive_style=%s,team_width=%s,depth=%s,offensive_style=%s,width=%s,
-      players_in_box=%s,corners=%s,freekicks=%s WHERE (tactic_id=%s)"""
+      statement="""UPDATE team_tactics SET defensive_style=%s,team_width=%s,depth=%s,offensive_style=%s,width=%s,players_in_box=%s,corners=%s,freekicks=%s WHERE (tactic_id=%s)"""
       self.cursor.execute(statement,(team_tactics.defensive_style,team_tactics.team_width,team_tactics.depth,team_tactics.offensive_style,
       team_tactics.width,team_tactics.players_in_box,team_tactics.corners,team_tactics.freekicks))
       self.connection.commit()
@@ -225,6 +224,13 @@ class Database:
       statement="""DELETE FROM team_tactics WHERE (tactic_id=%s)"""
       self.cursor.execute(statement,(tactic_id))
       self.connection.commit()
+    
+    def get_team_tactics(self,team_tactics):
+      statement="""SELECT FROM team_tactics WHERE tactic_id=%s"""
+      self.cursors.execute(statement,(tactic_id))
+      team_tactics=self.cursor.fetchone()
+      self.connection.commit()
+      return team_tactics
     
    
     
