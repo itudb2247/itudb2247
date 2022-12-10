@@ -129,7 +129,7 @@ class Movement:
         return(self.reactions_id, self.balance, self.acceleration, self.sprint_speed, self.agility, self.player_id)
      
     
- class team:
+class team:
     def __init__(self,team_name,league,overall,attack,midfield,defense,international_prestige,
                 domestic_prestige,transfer_budget,team_id=None):
         self.team_id=team_id
