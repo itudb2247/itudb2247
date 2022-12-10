@@ -55,18 +55,25 @@ class player_skills:
 
 
 class Goalkeeping:
-    def __init__(self, diving, handling, kicking, positioning, reflexes, player_id, goalkeeping_id=None):
+    def __init__(self, goalkeeping_id, player_id, diving, handling, kicking, positioning, reflexes):
         self.goalkeeping_id = goalkeeping_id
         self.player_id = player_id
         self.diving = diving
         self.handling = handling
         self.kicking = kicking
         self.positioning = positioning
-        self.reflexes = reflexes
+        self.reflexes = reflexes       
+    
+    def set_goalkeeping_id(self, goalkeeping_id):
+        self.goalkeeping_id = goalkeeping_id
+
+    def get_player_id(self):
+        return self.player_id
 
 
 class Mentality:
-    def __init__(self, aggression, interceptions, positioning, vision, penalties, composure,  player_id, mentality_id=None):
+    def __init__(self, mentality_id, player_id, aggression, interceptions, positioning, vision, penalties, composure):
+        self.mentality_id = mentality_id
         self.player_id = player_id
         self.aggression = aggression
         self.interceptions = interceptions
@@ -74,7 +81,12 @@ class Mentality:
         self.vision = vision
         self.penalties = penalties
         self.composure = composure
+    
+    def set_mentality_id(self, mentality_id):
         self.mentality_id = mentality_id
+
+    def get_player_id(self):
+        return self.player_id
 
 
 class Power:
@@ -130,6 +142,12 @@ class Movement:
         self.international_prestige=international_prestige
         self.domestic_prestige=domestic_prestige
         self.transfer_budget=transfer_budget
+        
+    def set_team_id(self, team_id):
+        self.team_id = team_id
+
+    def get_team_id(self):
+        return self.team_id
 
 class team_tactics:
     def __init__(self,defensive_style,team_width,depth,offensive_style,width,players_in_box,corners,
@@ -144,4 +162,13 @@ class team_tactics:
         self.corners=corners
         self.freekicks=freekicks
         self.team_id=team_id
+        
+    def set_tactic_id(self, tactic_id):
+        self.tactic_id = tactic_id
+        
+    def get_tactic_id(self):
+        return self.tactic_id
+    
+    def get_team_id(self):
+        return self.team_id
   
