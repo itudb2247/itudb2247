@@ -194,12 +194,12 @@ class Database:
                                      team.international_prestige,team.domestic_prestige,team.transfer_budget))
       self.connection.commit()
       
-    def delete_team(self,team):
+    def delete_team(self,team_id):
       statement="""DELETE FROM team WHERE team_id=%s"""
       self.cursor.execute(statement,(team_id))
       self.connection.commit()
       
-    def get_team(self,team):
+    def get_team(self,team_id):
       statement="""SELECT FROM team WHERE team_id=%s"""
       self.cursors.execute(statement,(team_id))
       team=self.cursor.fetchone()
@@ -220,12 +220,12 @@ class Database:
       team_tactics.width,team_tactics.players_in_box,team_tactics.corners,team_tactics.freekicks))
       self.connection.commit()
     
-    def delete_team_tactics(self,team_tactics):
+    def delete_team_tactics(self,tactic_id):
       statement="""DELETE FROM team_tactics WHERE (tactic_id=%s)"""
       self.cursor.execute(statement,(tactic_id))
       self.connection.commit()
     
-    def get_team_tactics(self,team_tactics):
+    def get_team_tactics(self,tactic_id):
       statement="""SELECT FROM team_tactics WHERE tactic_id=%s"""
       self.cursors.execute(statement,(tactic_id))
       team_tactics=self.cursor.fetchone()
