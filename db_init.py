@@ -3,13 +3,21 @@ import pandas as pd
 
 
 INIT = [
-
     """
-    CREATE TABLE IF NOT EXISTS team(
-        team_id INTEGER NOT NULL,
-        PRIMARY KEY (team_id)
-    )
-    """,
+      CREATE TABLE IF NOT EXISTS team(
+         team_id SERIAL NOT NULL,
+         team_name VARCHAR(200) NOT NULL UNIQUE,
+         league VARCHAR(200),
+         overall INTEGER,
+         attack INTEGER,
+         midfield INTEGER,
+         defense INTEGER,
+         international_prestige INTEGER,
+         domestic_prestige INTEGER,
+         transfer_budget INTEGER,
+         PRIMARY KEY (team_id)
+      )
+     """,
 
     """
     CREATE TABLE IF NOT EXISTS player(
@@ -25,7 +33,7 @@ INIT = [
         value INTEGER,
         wage INTEGER,
         player_image_url VARCHAR(200),
-        team_id INTEGER NOT NULL,
+        team_id SERIAL NOT NULL,
         nationality VARCHAR(30),
         PRIMARY KEY (player_id),
         FOREIGN KEY (team_id)
@@ -139,22 +147,7 @@ INIT = [
         FOREIGN KEY (player_id) REFERENCES player(player_id) ON DELETE CASCADE ON UPDATE CASCADE
     )
     """,
-      
-    """
-      CREATE TABLE IF NOT EXISTS team(
-         team_id SERIAL NOT NULL,
-         team_name VARCHAR(200) NOT NULL UNIQUE,
-         league VARCHAR(200),
-         overall INTEGER,
-         attack INTEGER,
-         midfield INTEGER,
-         defense INTEGER,
-         international_prestige INTEGER,
-         domestic_prestige INTEGER,
-         transfer_budget INTEGER,
-         PRIMARY KEY (team_id)
-      )
-     """,
+
       
     """
       CREATE TABLE IF NOT EXISTS team_tactics(
@@ -166,10 +159,12 @@ INIT = [
          offensive_style VARCHAR(200),
          width INTEGER,
          players_in_box INTEGER,
-         corners INTEGER
-         freekicks INTEGER
+         corners INTEGER,
+         freekicks INTEGER,
          PRIMARY KEY (tactic_id),
-         FOREING KEY (team_id) REFERENCES team(team_id) ON DELETE CASCADE ON UPDATE CASCADE
+         FOREIGN KEY (team_id)
+            REFERENCES team (team_id)
+            ON UPDATE CASCADE ON DELETE SET NULL
       )
       """
 ]
@@ -201,8 +196,8 @@ def fill_tables():
     con = dbapi.connect("host='localhost' dbname='Fifa' user='postgres' password='postgres'")
     cur = con.cursor()
     #QUERIES
-    
-    query_insert_player = """INSERT INTO player(player_name, date_of_birth, height, weight, overall_rating,potential_rating, best_position, best_overall_rating, value, wage,player_image_url,nationality,team_id ) VALUES( %s, %s, %s, %s, %s, %s,%s,%s, %s, %s, %s, %s,%s)"""
+    query_insert_team= """INSERT INTO team(team_id,team_name,league,overall,attack,midfield,defense,international_prestige,domestic_prestige,transfer_budget) VALUES( %s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
+    query_insert_player = """INSERT INTO player(player_name, date_of_birth, height, weight, overall_rating,potential_rating, best_position, best_overall_rating, value, wage,player_image_url,nationality,team_id) VALUES( %s, %s, %s, %s, %s, %s,%s,%s, %s, %s, %s, %s,%s)"""
     query_insert_player_attacking = """INSERT INTO player_attacking(crossing, finishing,heading_accuracy, short_passing, volleys) VALUES(%s, %s, %s, %s, %s)"""
     query_insert_player_profile = """INSERT INTO player_profile(preferred_foot,weak_foot,skill_moves,international_reputations,work_rate,body_type) VALUES(  %s, '%s', '%s','%s', %s,%s)"""
     query_insert_player_skills = """INSERT INTO player_skills(dribbling,curve,fk_accuracy,long_passing,ball_control) VALUES(  '%s', '%s', '%s', '%s', '%s')"""
@@ -210,8 +205,7 @@ def fill_tables():
     query_insert_player_movement = """INSERT INTO player_movement(acceleration,sprint_speed,agility,reactions_id,balance) VALUES(  '%s', '%s', '%s', '%s', '%s')"""
     query_insert_player_goalkeeping = """INSERT INTO player_goalkeeping(diving,handling,kicking,positioning,reflexes) VALUES( '%s', '%s', '%s', '%s', '%s')"""
     query_insert_player_mentality = """INSERT INTO player_mentality(aggression,interceptions,positioning,vision,penalties,composure) VALUES( '%s','%s', '%s', '%s', '%s', '%s')"""
-    query_insert_team= """INSERT INTO team(team_name,league,overall,attack,midfield,defense,international_prestige,domestic_prestige,transfer_budget) VALUES( '%s','%s','%s','%s','%s','%s','%s','%s','%s')"""
-    query_insert_team_tactics= """INSERT INTO team_tactics(defensive_style,team_width,depth,offensive_style,width,players_in_box,corners,freekicks) VALUES('%s','%s','%s','%s','%s','%s','%s','%s')"""
+    query_insert_team_tactics= """INSERT INTO team_tactics(team_id,defensive_style,team_width,depth,offensive_style,width,players_in_box,corners,freekicks) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s')"""
       
       
     # CSVs
@@ -222,19 +216,22 @@ def fill_tables():
     df_player_goalkeeping = pd.read_csv("./data/tbl_player_goalkeeping.csv", dtype=int, usecols=["int_diving", "int_handling", "int_kicking", "int_positioning", "int_reflexes"])
     df_player_mentality = pd.read_csv("./data//tbl_player_mentality.csv", dtype=int, usecols=["int_aggression", "int_interceptions", "int_positioning", "int_vision", "int_penalties", "int_composure"])
     df_team= pd.read_csv("./data/tbl_team.csv",usecols=["int_team_id","str_team_name","str_league","int_overall","int_attack","int_midfield","int_defence","int_international_prestige","int_domestic_prestige","int_transfer_budget"])
-    df_team_tactics=pd.read_csv("./data/tbl_team_tactics.csv",usecols=["int_tactic_id","int_team_id","str_defensive_style","int_team_width","int_depth","str_offensive_style","int_width","int_players_in_box","int_corners","int_freekicks"])
+    df_team_tactics=pd.read_csv("./data/tbl_team_tactics.csv", usecols=["int_team_id","int_team_width","int_depth","str_offensive_style","int_width","int_players_in_box","int_corners","int_freekicks"],dtype={"str_defensive_style":str})
     df_player = pd.read_csv("./data/n.csv", usecols=["str_player_name", "dt_date_of_birth", "int_height", "int_weight", "int_overall_rating", "int_potential_rating",
                             "str_best_position", "int_best_overall_rating", "int_value", "int_wage", "str_player_image_url", "int_team_id", "str_nationality"],dtype={"dt_date_of_birth":str})
     # fill the null team id values with -1 which is no team
-    df_player["int_team_id"] = df_player["int_team_id"].fillna(-1)
-    print(df_player)
+    df_player["int_team_id"] = df_player["int_team_id"].fillna(685)
+    #print(df_player)
+    #print(df_team)
+    #print(df_team_tactics)
+    #print(df_player_mentality)
     df_player_attacking = pd.read_csv("./data/tbl_player_attacking.csv", dtype=int, usecols=["int_crossing", "int_finishing", "int_heading_accuracy", "int_short_passing", "int_volleys"])
 
     # INSERTION
     df_team.apply(lambda x: insert(query_insert_team, x, cur), axis=1)
     df_player.apply(lambda x: insert(query_insert_player, x, cur), axis=1)
     # con.commit()
-
+    
     df_player_attacking.apply(lambda x: insert(
         query_insert_player_attacking, x, cur), axis=1)
     df_player_profile.apply(lambda x: insert(
@@ -249,6 +246,7 @@ def fill_tables():
         query_insert_player_goalkeeping, x, cur), axis=1)
     df_player_mentality.apply(lambda x: insert(
         query_insert_player_mentality, x, cur), axis=1)
+
     df_team_tactics.apply(lambda x:insert(
         query_insert_team_tactics, x, cur), axis=1)
 
