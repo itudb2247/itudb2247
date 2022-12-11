@@ -150,8 +150,7 @@ class team:
         return self.team_id
 
 class team_tactics:
-    def __init__(self,defensive_style,team_width,depth,offensive_style,width,players_in_box,corners,
-                freekicks,team_id,tactic_id=None):
+    def __init__(self,defensive_style,team_width,depth,offensive_style,width,players_in_box,corners,freekicks,team_id,tactic_id=None):
         self.tactic_id=tactic_id
         self.defensive_style=defensive_style
         self.team_width=team_width
