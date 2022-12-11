@@ -29,7 +29,7 @@ class Database:
 
     def delete_player(self, player_id):
         statement = """DELETE FROM player WHERE (player_id=%s)"""
-        self.cursor.execute(statement, (player_id))
+        self.cursor.execute(statement, (player_id,))
         self.connection.commit()
 
     def insert_player_attacking(self, player_attacking):
@@ -46,23 +46,24 @@ class Database:
         self.connection.commit()
 
     def delete_player_attacking(self, player_attacking_id):
-        statement = """DELETE FROM player_attacking WHERE attacking_id=?"""
+        statement = """DELETE FROM player_attacking WHERE attacking_id=%s"""
         self.cursor.execute(statement, (player_attacking_id))
         self.connection.commit()
 
     def get_player(self, player_id):
-        statement = """SELECT FROM player WHERE (player_id=%s)"""
+        statement = """SELECT * FROM player WHERE (player_id=%s)"""
         self.cursor.execute(statement, (player_id))
         player = self.cursor.fetchone()
         # self.connection.commit()
         return player
 
-    def get_player_attacking(self, player_attacking_id):
-        statement = """SELECT FROM player WHERE (player_attacking_id=%s)"""
-        self.cursor.execute(statement, (player_attacking_id))
-        player_attacking = self.cursor.fetchone()
+    def get_attacking_id(self, player_id):
+        statement = """SELECT (attacking_id)FROM player_attacking WHERE (player_id=%s)"""
+        self.cursor.execute(statement, (player_id,))
+        attacking_id = self.cursor.fetchone()
+        print(attacking_id)
         # self.connection.commit()
-        return player_attacking
+        return attacking_id
     
     def get_player_list(self):
         self.cursor.execute("""SELECT * FROM player """)

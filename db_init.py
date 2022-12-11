@@ -42,7 +42,7 @@ INIT = [
         PRIMARY KEY (attacking_id),
         FOREIGN KEY (player_id)
             REFERENCES player (player_id)
-            ON UPDATE CASCADE ON DELETE SET NULL 
+            ON UPDATE CASCADE ON DELETE CASCADE
     )
 """,
     """
@@ -182,7 +182,7 @@ def fill_tables():
                             "str_best_position", "int_best_overall_rating", "int_value", "int_wage", "str_player_image_url", "int_team_id", "str_nationality"])
     # fill the null team id values with -1 which is no team
     df_player["int_team_id"] = df_player["int_team_id"].fillna(-1)
-    print(df_player)
+    # print(df_player)
     df_player_attacking = pd.read_csv("./new/tbl_player_attacking.csv", dtype=int, usecols=["int_crossing", "int_finishing", "int_heading_accuracy", "int_short_passing", "int_volleys"])
 
     # INSERTION

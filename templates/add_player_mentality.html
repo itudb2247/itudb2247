@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content=""width=device-width, initial-scale-1.0>
+            <title>Add Player Mentality</title>
+    </head>
+    <body>
+        <div>
+
+            <form method="post">
+                <label for="player_id">Player ID</label>
+                <br>
+                <input type="text" name="player_id"
+                       value="{{ request.form['player_id'] }}"></input>
+                <br>
+
+                <label for="aggression">Agression</label>
+                <br>
+                <input type="text" name="aggression"
+                       value="{{ request.form['aggression'] }}"></input>
+                <br>
+
+                <label for="interceptions">Interceptions</label>
+                <br>
+                <input type="text" name="interceptions"
+                       value="{{ request.form['interceptions'] }}"></input>
+                <br>
+
+                <label for="positioning">Positioning</label>
+                <br>
+                <input type="text" name="positioning"
+                       value="{{ request.form['positioning'] }}"></input>
+                <br>
+
+                <label for="vision">Vision</label>
+                <br>
+                <input type="text" name="vision"
+                       value="{{ request.form['vision'] }}"></input>
+                <br>
+
+                <label for="penalties">Penalties</label>
+                <br>
+                <input type="text" name="penalties"
+                       value="{{ request.form['penalties'] }}"></input>
+                <br>
+
+                <label for="composure">Composure</label>
+                <br>
+                <input type="text" name="composure"
+                       value="{{ request.form['composure'] }}"></input>
+                <br>
+        
+                
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
+
+    </body>
+</html>

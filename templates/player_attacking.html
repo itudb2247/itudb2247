@@ -1,11 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<h1>Player Attacking</h1>
-<ul>
-    <li><a href="{{ url_for('player_page') }}">List player</a></li>
-    <li><a href="{{ url_for('home_page') }}">Home</a></li>
-</ul>
+
 
 {% if player_attacking_list %}
 <table>

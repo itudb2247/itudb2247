@@ -1,15 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
-  </head>
-  <body>
-    {% block content %}{% endblock %}
 
-    <footer>
-      <small>&copy; 2022 - Team Shining Stars</small>
-    </footer>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta HTTP-EQUİV="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="" width=device-width, initial-scale-1.0 />
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+
+<body>
+  <ul>
+    <li><a href="{{ url_for('player_page') }}">List player</a></li>
+    <li><a href="{{ url_for('player_attacking_page') }}">List player attacking</a></li>
+    <br>
+
+    <li><a href="{{ url_for('add_player') }}">Add Player</a></li>
+    <li><a href="{{ url_for('add_player_attacking') }}">Add Player Attacking</a></li>
+    <li><a href="{{ url_for('add_player_mentality') }}">Add Player Mentality</a></li>
+    <li><a href="{{ url_for('add_player_goalkeeping') }}">Add Player Goalkeeping</a></li>
+    <li><a href="{{ url_for('add_player_profile') }}">Add Player Profile</a></li>
+    <li><a href="{{ url_for('add_player_skills') }}">Add Player Skill</a></li>
+    <br>
+
+    <li><a href="{{ url_for('delete_player') }}">Delete Player</a></li>
+    <li><a href="{{ url_for('delete_player_attacking') }}">Delete Player Attacking</a></li>
+    <li><a href="{{ url_for('delete_player_mentality') }}">Delete Player Mentality</a></li>
+    <li><a href="{{ url_for('delete_player_goalkeeping') }}">Delete Player Goalkeeping</a></li>
+    <li><a href="{{ url_for('delete_player_profile') }}">Delete Player Profile</a></li>
+    <li><a href="{{ url_for('delete_player_skills') }}">Delete Player Skill</a></li>
+</ul>
+  {% block content %}{% endblock %}
+
+  <footer>
+    <small>&copy; 2022 - Team Shining Stars</small>
+  </footer>
+</body>
+
 </html>

@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block title %}Add Player Attacking{% endblock %}
+{% block content %}
+<h1>ADD PLAYER ATTACKING</h1>
+<div>
+    <form action="" method="post" name="add_player_attacking">
+        <label for="player_id">player_id</label>
+        <br>
+        <input type="number" name="player_id" value="{{ request.form['player_id'] }}" required="required" /></input>
+        <br>
+
+        <label for="crossing">Crossing</label>
+        <br>
+        <input type="number" name="crossing" value="{{ request.form['crossing'] }}"></input>
+        <br>
+
+        <label for="finishing">Finishing</label>
+        <br>
+        <input type="number" name="finishing" value="{{ request.form['finishing'] }}"></input>
+        <br>
+
+        <label for="heading_accuracy">Heading Accuracy</label>
+        <br>
+        <input type="number" name="heading_accuracy" value="{{ request.form['heading_accuracy'] }}"></input>
+        <br>
+
+        <label for="short_passing">Short Passing</label>
+        <br>
+        <input type="number" name="short_passing" value="{{ request.form['short_passing'] }}"></input>
+        <br>
+
+        <label for="volleys">Volleys</label>
+        <br>
+        <input type="number" name="volleys" value="{{ request.form['volleys'] }}"></input>
+        <br>
+
+        <button type="submit">Submit</button>
+
+    </form>
+</div>
+{% endblock %}
