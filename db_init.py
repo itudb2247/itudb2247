@@ -205,7 +205,7 @@ def fill_tables():
     query_insert_player_movement = """INSERT INTO player_movement(acceleration,sprint_speed,agility,reactions_id,balance) VALUES(  '%s', '%s', '%s', '%s', '%s')"""
     query_insert_player_goalkeeping = """INSERT INTO player_goalkeeping(diving,handling,kicking,positioning,reflexes) VALUES( '%s', '%s', '%s', '%s', '%s')"""
     query_insert_player_mentality = """INSERT INTO player_mentality(aggression,interceptions,positioning,vision,penalties,composure) VALUES( '%s','%s', '%s', '%s', '%s', '%s')"""
-    query_insert_team_tactics= """INSERT INTO team_tactics(team_id,defensive_style,team_width,depth,offensive_style,width,players_in_box,corners,freekicks) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s')"""
+    query_insert_team_tactics= """INSERT INTO team_tactics(defensive_style,team_width,depth,offensive_style,width,players_in_box,corners,freekicks) VALUES(%s,'%s','%s',%s,'%s','%s','%s','%s')"""
       
       
     # CSVs
@@ -218,12 +218,12 @@ def fill_tables():
     df_player = pd.read_csv("./data/n.csv", usecols=["str_player_name", "dt_date_of_birth", "int_height", "int_weight", "int_overall_rating", "int_potential_rating",
                             "str_best_position", "int_best_overall_rating", "int_value", "int_wage", "str_player_image_url", "int_team_id", "str_nationality"],dtype={"dt_date_of_birth":str})
     df_team= pd.read_csv("./data/tbl_team.csv",usecols=["str_team_name","str_league","int_overall","int_attack","int_midfield","int_defence","int_international_prestige","int_domestic_prestige","int_transfer_budget"])
-    df_team_tactics=pd.read_csv("./data/tbl_team_tactics.csv", usecols=["int_team_id","int_team_width","int_depth","str_offensive_style","int_width","int_players_in_box","int_corners","int_freekicks"],dtype={"str_defensive_style":str})
+    df_team_tactics=pd.read_csv("./data/tbl_team_tactics.csv", usecols=["str_defensive_style","int_team_width","int_depth","str_offensive_style","int_width","int_players_in_box","int_corners","int_freekicks"])
     # fill the null team id values with -1 which is no team
     df_player["int_team_id"] = df_player["int_team_id"].fillna(682)
     #print(df_player)
     #print(df_team)
-    #print(df_team_tactics)
+    print(df_team_tactics)
     #print(df_player_mentality)
     df_player_attacking = pd.read_csv("./data/tbl_player_attacking.csv", dtype=int, usecols=["int_crossing", "int_finishing", "int_heading_accuracy", "int_short_passing", "int_volleys"])
 
