@@ -88,6 +88,47 @@ def add_player_mentality():
         return redirect(url_for('views.home'))
     return render_template('add_player_mentality.html')
 
+
+@views.route('/add_team',methods=('GET','POST'))
+def add_team():
+    if request.method =='POST':
+        team_name=request.form['team_name']
+        league=request.form['league']
+        overall=request.form['overall']
+        attack=request.form['attack']
+        midfield=request.form['midfield']
+        defense=request.form['defense']
+        international_prestige=request.form['international_prestige']
+        domestic_prestige=request.form['domestic_prestige']
+        transfer_budget=request.form['transfer_budget']
+
+        db = Database()
+        db.insert_team(Team(team_name,league,overall,attack,midfield,defense,international_prestige,
+        domestic_prestige,transfer_budget))
+        flash('Successfully inserted new team!')
+        return redirect(url_for('views.home'))
+    return render_template('add_team.html')
+
+@views.route('/add_team_tactics',methods=('GET','POST'))
+def add_team_tactics():
+    if request.method =='POST':
+        defensive_style=request.form['defensive_style']
+        team_width=request.form['team_width']
+        depth=request.form['depth']
+        offensive_style=request.form['offensive_style']
+        width=request.form['width']
+        players_in_box=request.form['players_in_box']
+        corners=request.form['corners']
+        freekicks=request.form['freekicks']
+        team_id=request.form['team_id']
+
+        db = Database()
+        db.insert_team_tactics(Team_tactics(defensive_style,team_width,depth,offensive_style,width,players_in_box,
+        corners,freekicks,team_id))
+        flash('Successfully inserted new team tactics!')
+        return redirect(url_for('views.home'))
+    return render_template('add_team_tactics.html')
+
 # DELETE FUNCTIONS
 
 @views.route('/delete_player', methods=('GET', 'POST'))
@@ -147,6 +188,29 @@ def delete_player_mentality():
         return redirect(url_for('views.home'))
     return render_template('delete_player_mentality.html')
 
+@views.route('/delete_team', methods=('GET', 'POST'))
+def delete_team():
+    if request.method == 'POST':
+        team_id = request.form['team_id']
+
+        db = Database()
+        db.delete_team(team_id)
+        flash('Team "{}"  was successfully deleted!'.format(team_id))
+        return redirect(url_for('views.home'))
+    return render_template('delete_team.html')
+
+@views.route('/delete_team_tactics', methods=('GET', 'POST'))
+def delete_team_tactics():
+    if request.method == 'POST':
+        tactic_id = request.form['tactic_id']
+
+        db = Database()
+        db.delete_team_tactics(tactic_id)
+        flash('Team tactics "{}"  was successfully deleted!'.format(tactic_id))
+        return redirect(url_for('views.home'))
+    return render_template('delete_team_tactics.html')
+
+
 
 @views.route('/search_player', methods=('GET', 'POST'))
 def search_player():
@@ -158,6 +222,20 @@ def search_player():
         db = Database()
         players = db.get_player(player_name)
         return render_template('search.html', players=players)
+
+
+@views.route('/search_team', methods=('GET', 'POST'))
+def search_team():
+    if request.method == 'GET':
+        return render_template('search_team.html')
+    else:
+        team_name = request.form['team_name']
+
+        db = Database()
+        teams = db.get_team(team_name)
+        return render_template('search.html', teams=teams)
+
+
 
 # NOT WORKING CORRECTLY
 # @views.route('/update_player', methods=('GET', 'POST'))

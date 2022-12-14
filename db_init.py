@@ -196,8 +196,8 @@ def fill_tables():
     con = dbapi.connect("host='localhost' dbname='Fifa' user='postgres' password='postgres'")
     cur = con.cursor()
     #QUERIES
-    query_insert_team= """INSERT INTO team(team_id,team_name,league,overall,attack,midfield,defense,international_prestige,domestic_prestige,transfer_budget) VALUES( %s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
-    query_insert_player = """INSERT INTO player(player_name, date_of_birth, height, weight, overall_rating,potential_rating, best_position, best_overall_rating, value, wage,player_image_url,nationality,team_id) VALUES( %s, %s, %s, %s, %s, %s,%s,%s, %s, %s, %s, %s,%s)"""
+    query_insert_team= """INSERT INTO team(team_name,league,overall,attack,midfield,defense,international_prestige,domestic_prestige,transfer_budget) VALUES( %s,%s,%s,%s,%s,%s,%s,%s,%s)"""
+    query_insert_player = """INSERT INTO player(player_name, date_of_birth, height, weight, overall_rating,potential_rating, best_position, best_overall_rating, value, wage,player_image_url,nationality,team_id ) VALUES( %s, %s, %s, %s, %s, %s,%s,%s, %s, %s, %s, %s,%s)"""
     query_insert_player_attacking = """INSERT INTO player_attacking(crossing, finishing,heading_accuracy, short_passing, volleys) VALUES(%s, %s, %s, %s, %s)"""
     query_insert_player_profile = """INSERT INTO player_profile(preferred_foot,weak_foot,skill_moves,international_reputations,work_rate,body_type) VALUES(  %s, '%s', '%s','%s', %s,%s)"""
     query_insert_player_skills = """INSERT INTO player_skills(dribbling,curve,fk_accuracy,long_passing,ball_control) VALUES(  '%s', '%s', '%s', '%s', '%s')"""
@@ -215,12 +215,12 @@ def fill_tables():
     df_player_power = pd.read_csv("./data/tbl_player_power.csv", dtype=int, usecols=["int_shot_power", "int_jumping", "int_stamina", "int_strength", "int_long_shots"])
     df_player_goalkeeping = pd.read_csv("./data/tbl_player_goalkeeping.csv", dtype=int, usecols=["int_diving", "int_handling", "int_kicking", "int_positioning", "int_reflexes"])
     df_player_mentality = pd.read_csv("./data//tbl_player_mentality.csv", dtype=int, usecols=["int_aggression", "int_interceptions", "int_positioning", "int_vision", "int_penalties", "int_composure"])
-    df_team= pd.read_csv("./data/tbl_team.csv",usecols=["int_team_id","str_team_name","str_league","int_overall","int_attack","int_midfield","int_defence","int_international_prestige","int_domestic_prestige","int_transfer_budget"])
-    df_team_tactics=pd.read_csv("./data/tbl_team_tactics.csv", usecols=["int_team_id","int_team_width","int_depth","str_offensive_style","int_width","int_players_in_box","int_corners","int_freekicks"],dtype={"str_defensive_style":str})
     df_player = pd.read_csv("./data/n.csv", usecols=["str_player_name", "dt_date_of_birth", "int_height", "int_weight", "int_overall_rating", "int_potential_rating",
                             "str_best_position", "int_best_overall_rating", "int_value", "int_wage", "str_player_image_url", "int_team_id", "str_nationality"],dtype={"dt_date_of_birth":str})
+    df_team= pd.read_csv("./data/tbl_team.csv",usecols=["str_team_name","str_league","int_overall","int_attack","int_midfield","int_defence","int_international_prestige","int_domestic_prestige","int_transfer_budget"])
+    df_team_tactics=pd.read_csv("./data/tbl_team_tactics.csv", usecols=["int_team_id","int_team_width","int_depth","str_offensive_style","int_width","int_players_in_box","int_corners","int_freekicks"],dtype={"str_defensive_style":str})
     # fill the null team id values with -1 which is no team
-    df_player["int_team_id"] = df_player["int_team_id"].fillna(685)
+    df_player["int_team_id"] = df_player["int_team_id"].fillna(682)
     #print(df_player)
     #print(df_team)
     #print(df_team_tactics)
@@ -230,8 +230,8 @@ def fill_tables():
     # INSERTION
     df_team.apply(lambda x: insert(query_insert_team, x, cur), axis=1)
     df_player.apply(lambda x: insert(query_insert_player, x, cur), axis=1)
-    # con.commit()
-    
+
+
     df_player_attacking.apply(lambda x: insert(
         query_insert_player_attacking, x, cur), axis=1)
     df_player_profile.apply(lambda x: insert(
@@ -246,9 +246,9 @@ def fill_tables():
         query_insert_player_goalkeeping, x, cur), axis=1)
     df_player_mentality.apply(lambda x: insert(
         query_insert_player_mentality, x, cur), axis=1)
-
     df_team_tactics.apply(lambda x:insert(
         query_insert_team_tactics, x, cur), axis=1)
+
 
 
     con.commit()
