@@ -2,6 +2,14 @@ import psycopg2 as dbapi
 import pandas as pd
 import numpy
 INIT = [
+    # """
+    # CREATE TABLE IF NOT EXISTS user(
+    #     name VARCHAR(80) NOT NULL,
+    #     password VARCHAR(80) NOT NULL,
+    #     email VARCHAR(50) PRIMATY KEY UNIQUE NOT NULL,
+    #     username VARCHAR(50) UNIQUE NOT NULL
+    # )
+    # """,
     """
     CREATE TABLE IF NOT EXISTS team(
         team_id INTEGER NOT NULL,

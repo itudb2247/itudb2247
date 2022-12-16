@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% block title %}Add Player{% endblock %}
+{% block content %}
+<h1>Update PLAYER</h1>
+<div>
+    <form action="" method="post" name="add_player">
+        <label for="name">Name</label>
+        <br>
+        <input type="text" name="name" value="{{ request.form['name'] }}" /></input>
+        <br>
+
+        <label for="date_of_birth">Date of Birth (MM/DD/YYYY)</label>
+        <br>
+        <input type="date" name="date_of_birth" value="{{ request.form['date_of_birth'] }}"></input>
+        <br>
+
+        <label for="height">Height</label>
+        <br>
+        <input type="number" name="height" value="{{ request.form['height'] }}"></input>
+        <br>
+
+        <label for="weight">Weight</label>
+        <br>
+        <input type="number" name="weight" value="{{ request.form['weight'] }}"></input>
+        <br>
+
+        <label for="potential_rating">Potential Rating</label>
+        <br>
+        <input type="number" name="potential_rating" value="{{ request.form['potential_rating'] }}"></input>
+        <br>
+
+        <label for="overall_rating">Overall Rating</label>
+        <br>
+        <input type="number" name="overall_rating" value="{{ request.form['overall_rating'] }}"></input>
+        <br>
+
+        <label for="best_position">Best Position</label>
+        <br>
+        <!-- <select name="best_position"  form="add_player">
+            <option value="RW">RW</option>
+            <option value="ST">ST</option>
+            <option value="GK">GK</option>
+            <option value="CAM">CAM</option>
+            <option value="LW">LW</option>
+            <option value="CB">CB</option>
+            <option value="CDM">CDM</option>
+            <option value="CF">CF</option>
+            <option value="LM">LM</option>
+            <option value="CM">CM</option>
+            <option value="RB">RB</option>
+            <option value="LB">LB</option>
+            <option value="RM">RM</option>
+            <option value="LWB">LWB</option>
+            <option value="RWB">RWB</option>
+          </select> -->
+          
+        <input type="text" name="best_position" value="{{ request.form['best_position'] }}"></input>
+        <br>
+
+        <label for="best_overall_rating">Best Overall Rating</label>
+        <br>
+        <input type="number" name="best_overall_rating" value="{{ request.form['best_overall_rating'] }}"></input>
+        <br>
+
+        <label for="value">Value</label>
+        <br>
+        <input type="number" name="value" value="{{ request.form['value'] }}"></input>
+        <br>
+
+        <label for="wage">Wage</label>
+        <br>
+        <input type="number" name="wage" value="{{ request.form['wage'] }}"></input>
+        <br>
+
+        <label for="team_id">Team Id</label>
+        <br>
+        <input type="number" name="team_id" value="{{ request.form['team_id'] }}"></input>
+        <br>
+
+        <label for="url">Url</label>
+        <br>
+        <input type="text" name="url" value="{{ request.form['url'] }}"></input>
+        <br>
+
+        <label for="nationality">Nationality</label>
+        <br>
+        <input type="text" name="nationality" value="{{ request.form['nationality'] }}"></input>
+        <br>
+
+        <button type="submit">Submit</button>
+
+    </form>
+</div>
+{% endblock %}

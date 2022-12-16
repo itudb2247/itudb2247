@@ -2,5 +2,77 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 <h1>Player</h1>
+{% if player_list %}
+<table class="table is-striped is-fullwidth">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Date of Birth</th>
+            <th scope="col">Height</th>
+            <th scope="col">Weight</th>
+            <th scope="col">Overall Rating</th>
+            <th scope="col">Potential Rating</th>
+            <th scope="col">Best Position</th>
+            <th scope="col">Best Overall Rating</th>
+            <th scope="col">Best Overall Rating</th>
+            <th scope="col">Value</th>
+            <th scope="col">Wage</th>
+            <th scope="col">Team</th>
+            <th scope="col">Nationality</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for player_id, name, date_of_birth, height, weight ,overall_rating, potential_rating, best_position,best_overall_rating,value, wage, player_image_url, team_id, nationality in player_list %}
+        <tr>
+            {% if  name  %}
+            <td>{{ name }}</td>
+            {% endif %}
+            {% if  date_of_birth  %}
+            <td>{{ date_of_birth }}</td>
+            {% endif %}
+            {% if  height  %}
+            <td>{{ height }}</td>
+            {% endif %}
+            {% if  weight  %}
+            <td>{{ weight }}</td>
+            {% endif %}
+            {% if  overall_rating  %}
+            <td>{{ overall_rating }}</td>
+            {% endif %}
+            {% if  potential_rating  %}
+            <td>{{ potential_rating }}</td>
+            {% endif %}
+            {% if  best_position  %}
+            <td>{{ best_position }}</td>
+            {% endif %}
+            {% if  best_overall_rating  %}
+            <td>{{ best_overall_rating }}</td>
+            {% endif %}
+            {% if  value  %}
+            <td>{{ value }}</td>
+            {% endif %}
+            {% if  wage  %}
+            <td>{{ wage }}</td>
+            {% endif %}
+            {% if  team_id  %}
+            <td>{{ team_id }}</td>
+            {% endif %}
+            {% if  nationality  %}
+            <td>{{ nationality }}</td>
+            {% endif %}
+            <td><a href="{{ url_for('update_player', player_id = player_id) }}"
+                    class="btn btn-secondary btn-sm">
+                    Update </a>
+            </td>
+            <td><a href="{{ url_for('delete_player', player_id = player_id) }}"
+                class="btn btn-danger btn-sm"
+                        onclick="return confirm('Are you sure you want to delete this player?')">
+                Delete </a>
+        </td>
+        </tr>
+        {% endfor %}
+    </tbody>
 
+</table>
+{% endif %}
 {% endblock %}

@@ -2,57 +2,53 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
-
 {% if player_attacking_list %}
-<table>
-    {%for player_attacking in player_attacking_list %}
-    <tr>
-        <th>attacking_id:</th>
-        <td>{{ player_attacking.crossing }}</td>
-    </tr>
-    {%endfor%}
+<table class="table is-striped is-fullwidth">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Crossing</th>
+            <th scope="col">Finishing</th>
+            <th scope="col">Heading Accuracy</th>
+            <th scope="col">Short Passing</th>
+            <th scope="col">Volleys</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for name, attacking_id, player_id, crossing ,finishing, heading_accuracy, short_passing,volleys in player_attacking_list %}
+        <tr>
+            {% if  name  %}
+            <td>{{ name }}</td>
+            {% endif %}
+            {% if  crossing  %}
+            <td>{{ crossing }}</td>
+            {% endif %}
+            {% if  finishing  %}
+            <td>{{ finishing }}</td>
+            {% endif %}
+            {% if  heading_accuracy  %}
+            <td>{{ heading_accuracy }}</td>
+            {% endif %}
+            {% if  short_passing  %}
+            <td>{{ short_passing }}</td>
+            {% endif %}
+            {% if  volleys  %}
+            <td>{{ volleys }}</td>
+            {% endif %}
+            <td><a href="{{ url_for('update_player_attacking', attacking_id = attacking_id) }}"
+                    class="btn btn-secondary btn-sm">
+                    Update </a>
+            </td>
+            <td><a href="{{ url_for('delete_player_attacking', attacking_id = attacking_id) }}"
+                class="btn btn-danger btn-sm"
+                        onclick="return confirm('Are you sure you want to delete this attacking?')">
+                Delete </a>
+        </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
 </table>
-{%endif%}
-<!-- <table>
-    <tr>
-        <th>attacking_id:</th>
-        <td>{{ player_attacking_list.attacking_id }}</td>
-    </tr>
-    {% if player_attacking_list.player_id %}
-    <tr>
-        <th>player_id:</th>
-        <td>{{ player_attacking_list.player_id }}</td>
-    </tr>
-    {% endif %}
-    {% if player_attacking_list.crossing %}
-    <tr>
-        <th>crossing:</th>
-        <td>{{ player_attacking_list.crossing }}</td>
-    </tr>
-    {% endif %}
-    {% if player_attacking_list.finishing %}
-    <tr>
-        <th>finishing:</th>
-        <td>{{ player_attacking_list.finishing }}</td>
-    </tr>
-    {% endif %}
-    {% if player_attacking_list.heading_accuracy %}
-    <tr>
-        <th>heading_accuracy:</th>
-        <td>{{ player_attacking_list.heading_accuracy }}</td>
-    </tr>
-    {% endif %}
-    {% if player_attacking_list.short_passing %}
-    <tr>
-        <th>short_passing:</th>
-        <td>{{ player_attacking_list.short_passing }}</td>
-    </tr>
-    {% endif %}
-    {% if player_attacking_list.volleys %}
-    <tr>
-        <th>volleys:</th>
-        <td>{{ player_attacking_list.volleys }}</td>
-    </tr>
-    {% endif %}
-</table> -->
+{% endif %}
+
 {% endblock %}

@@ -9,3 +9,12 @@ duplicate issue in input files are solved. Database functions are tested. All cl
 
 9.12.2022
 css and html files are created. view functions are created and application configuration setting are adjusted. 
+
+10-11.12.2022
+add and  delete html pages and view functions created.
+
+14.12.2022
+login and logout pages are created, add and delete functions are tested.
+
+16.12.2022
+update view functions are created and frontend of the html pages are edited.

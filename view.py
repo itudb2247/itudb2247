@@ -1,22 +1,60 @@
-from flask import current_app, render_template, redirect, request, url_for, flash
+from flask import current_app, render_template, redirect, request, url_for, flash, Blueprint
 import classes
 
 # Specify the server response to return
-
-
 def home_page():
     return render_template("index.html")
 
+# def login_page():
+#     form = LoginForm()
+#     if form.validate_on_submit():
+#         username = form.data["username"]
+#         user = get_user(username)
+#         if user is not None:
+#             password = form.data["password"]
+#             if hasher.verify(password, user.password):
+#                 login_user(user)
+#                 flash("You have logged in.")
+#                 next_page = request.args.get("next", url_for("home_page"))
+#                 return redirect(next_page)
+#         flash("Invalid credentials.")
+#     return render_template("login.html", form=form)
+
+# def login_page():
+#     # Here we use a class of some kind to represent and validate our
+#     # client-side form data. For example, WTForms is a library that will
+#     # handle this for us, and we use a custom LoginForm to validate.
+#     form = LoginForm()
+#     if form.validate_on_submit():
+#         # Login and validate the user.
+#         # user should be an instance of your `User` class
+#         login_user(user)
+
+#         flask.flash('Logged in successfully.')
+
+#         next = flask.request.args.get('next')
+#         # is_safe_url should check if the url is safe for redirects.
+#         # See http://flask.pocoo.org/snippets/62/ for an example.
+#         if not is_safe_url(next):
+#             return flask.abort(400)
+
+#         return flask.redirect(next or flask.url_for('index'))
+#     return flask.render_template('login.html', form=form)
+
+# # def logout_page():
+
+# # def register_page():
 
 def player_page():
     db = current_app.config["db"]
     players = db.get_player_list()
-    return render_template("player.html")
+    return render_template("player.html", player_list=players)
 
 
 def player_attacking_page():
     db = current_app.config["db"]
     player_attacking_list = db.get_player_attacking_list()
+    # print(player_attacking_list)
     return render_template("player_attacking.html", player_attacking_list=player_attacking_list)
 
 # INSERT FUNCTIONS
@@ -136,31 +174,21 @@ def add_player_mentality():
 
 # DELETE FUNCTION
 
-
-def delete_player():
-    if request.method == 'POST':
-        player_id = request.form['player_id']
-
-        db = current_app.config["db"]
-        db.delete_player(int(player_id))
-        # get name of the player for display
-        #flash('"{}" was successfully deleted!'.format())
-        flash('Player "{}"  was successfully deleted!'.format(player_id))
-        return redirect(url_for('home_page'))
-    return render_template('delete_player.html')
+def delete_player(player_id):
+    db = current_app.config["db"]
+    db.delete_player(int(player_id))
+    # get name of the player for display
+    #flash('"{}" was successfully deleted!'.format())
+    flash('Player "{}"  was successfully deleted!'.format(player_id))
+    return redirect(url_for('player_page'))
 
 
-def delete_player_attacking():
-    if request.method == 'POST':
-        db = current_app.config["db"]
-        player_id = request.form['player_id']
-        # print(type(player_id),player_id)
-        attacking_id = db.get_attacking_id(int(player_id))
-        db.delete_player_attacking(attacking_id)
-        flash('Player attacking"{}"  was successfully deleted!'.format(
+def delete_player_attacking(attacking_id):
+    db = current_app.config["db"]
+    db.delete_player_attacking(attacking_id)
+    flash('Player attacking"{}"  was successfully deleted!'.format(
             attacking_id))
-        return redirect(url_for('home_page'))
-    return render_template('delete_player_attacking.html')
+    return redirect(url_for('player_attacking_page'))
 
 
 def delete_player_profile():
@@ -206,6 +234,70 @@ def delete_player_mentality():
         return redirect(url_for('home_page'))
     return render_template('delete_player_mentality.html')
 
+# UPDATE FUNCTIONS
+def update_player(player_id):
+    db = current_app.config["db"]
+    player = db.get_player(player_id)
+    player_list = list(player)
+    if request.method == "POST":
+        if(request.form["name"]!=''):
+            player_list[1] = request.form["name"]
+        if(request.form["date_of_birth"]!=''):
+            player_list[2] = request.form["date_of_birth"]
+        if(request.form["height"]!=''):
+            player_list[3] = request.form["height"]
+        if(request.form["weight"]!=''):
+            player_list[4] = request.form["weight"]
+        if(request.form["potential_rating"]!=''):
+            player_list[5] = request.form["potential_rating"]
+        if(request.form["overall_rating"]!=''):
+            player_list[6] = request.form["overall_rating"]
+        if(request.form["best_position"]!=''):
+            player_list[7] = request.form["best_position"]
+        if(request.form["overall_rating"]!=''):
+            player_list[8] = request.form["overall_rating"]
+        if(request.form["value"]!=''):
+            player_list[9] = request.form["value"]
+        if(request.form["wage"]!=''):
+            player_list[10] = request.form["wage"]
+        if(request.form["team_id"]!=''):
+            player_list[11] = request.form["team_id"]
+        if(request.form["url"]!=''):
+            player_list[12] = request.form["url"]
+        if(request.form["nationality"]!=''):
+            player_list[13] = request.form["nationality"]
+        
+        db.update_player(classes.Player( player_name=player_list[1], date_of_birth=player_list[2], height = player_list[3], weight=player_list[4], overall_rating=player_list[5],
+                 potential_rating=player_list[6], best_position=player_list[7], best_overall_rating=player_list[8], value=player_list[9], wage=player_list[10],
+                 player_image_url=player_list[11], team_id=player_list[12], nationality=player_list[13], player_id=player_list[0]))
+        flash('Successfully inserted new player!')
+        return redirect(url_for("player_page"))
+    return render_template("update_player.html")
+
+def update_player_attacking(attacking_id):
+    db = current_app.config["db"]
+    player_attacking = db.get_player_attacking(attacking_id)
+    player_attacking_list = list(player_attacking)
+    if request.method == "POST":
+        if(request.form["crossing"]!=''):
+            player_attacking_list[3] = request.form["crossing"]
+        if(request.form["finishing"]!=''):
+            player_attacking_list[4] = request.form["finishing"]
+        if(request.form["heading_accuracy"]!=''):
+            player_attacking_list[5] = request.form["heading_accuracy"]
+        if(request.form["short_passing"]!=''):
+            player_attacking_list[6] = request.form["short_passing"]
+        if(request.form["volleys"]!=''):
+            player_attacking_list[7] = request.form["volleys"]
+
+        new_attacking = classes.PlayerAttacking(attacking_id=player_attacking_list[1], player_id = player_attacking_list[2], 
+                                           crossing = player_attacking_list[3], finishing = player_attacking_list[4], 
+                                           heading_accuracy = player_attacking_list[5], short_passing = player_attacking_list[6], 
+                                           volleys = player_attacking_list[7])
+        db.update_player_attacking(new_attacking)
+        flash('Successfully inserted new player attacking!')
+        return redirect(url_for("player_attacking_page"))
+    return render_template("update_player_attacking.html", name = player_attacking[0])
 
 # SEARCH FUNCTIONS
 """@views.route('/search_player', methods=('GET', 'POST'))

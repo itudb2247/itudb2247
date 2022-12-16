@@ -4,16 +4,18 @@ from classes import *
 
 class Database:
     def __init__(self):
-        #check if database exists
+        # check if database exists
         self.host = 'localhost'
         self.db_name = 'Fifa'
         self.user = 'postgres'
         self.password = 'postgres'
         self.port = 5432
-        self.connection = dbapi.connect(host =self.host, database = self.db_name, user=self.user, password=self.password, port=self.port)
+        self.connection = dbapi.connect(
+            host=self.host, database=self.db_name, user=self.user, password=self.password, port=self.port)
         self.cursor = self.connection.cursor()
 # -------------BİLGE----------------------------------
     # player_image_url?
+
     def insert_player(self, player):
         statement = """INSERT INTO player(player_name,date_of_birth,height,weight,overall_rating,potential_rating,best_position,best_overall_rating,value,wage,player_image_url,team_id,nationality) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
         self.cursor.execute(statement, (player.player_name, player.date_of_birth, player.height, player.weight, player.overall_rating, player.potential_rating,
@@ -40,38 +42,42 @@ class Database:
 
     # can player_id be updated or not?
     def update_player_attacking(self, player_attacking):
-        statement = """UPDATE player_attacking SET crossing=%s, finishing=%s, heading_accuracy=%s, short_passing=%s, volleys=%s"""
+        statement = """UPDATE player_attacking SET crossing=%s, finishing=%s, heading_accuracy=%s, short_passing=%s, volleys=%s WHERE (attacking_id = %s)"""
         self.cursor.execute(statement, (player_attacking.crossing, player_attacking.finishing,
-                                        player_attacking.heading_accuracy, player_attacking.short_passing, player_attacking.volleys))
+                                        player_attacking.heading_accuracy, player_attacking.short_passing, player_attacking.volleys, player_attacking.attacking_id))
         self.connection.commit()
 
     def delete_player_attacking(self, player_attacking_id):
         statement = """DELETE FROM player_attacking WHERE attacking_id=%s"""
-        self.cursor.execute(statement, (player_attacking_id))
+        self.cursor.execute(statement, (player_attacking_id,))
         self.connection.commit()
 
     def get_player(self, player_id):
         statement = """SELECT * FROM player WHERE (player_id=%s)"""
-        self.cursor.execute(statement, (player_id))
+        self.cursor.execute(statement, (player_id,))
         player = self.cursor.fetchone()
-        # self.connection.commit()
         return player
 
-    def get_attacking_id(self, player_id):
-        statement = """SELECT (attacking_id)FROM player_attacking WHERE (player_id=%s)"""
-        self.cursor.execute(statement, (player_id,))
-        attacking_id = self.cursor.fetchone()
-        print(attacking_id)
-        # self.connection.commit()
-        return attacking_id
+    # def get_attacking_id(self, player_id):
+    #     statement = """SELECT (attacking_id)FROM player_attacking WHERE (player_id=%s)"""
+    #     self.cursor.execute(statement, (player_id,))
+    #     attacking_id = self.cursor.fetchone()
+    #     # print(attacking_id)
+    #     return attacking_id
     
+    def get_player_attacking(self,attacking_id):
+        statement = """SELECT player.player_name, player_attacking.attacking_id, player_attacking.player_id, player_attacking.crossing, player_attacking.finishing, player_attacking.heading_accuracy, player_attacking.short_passing, player_attacking.volleys FROM player_attacking , player WHERE(player.player_id = player_attacking.player_id) AND (player_attacking.attacking_id = %s)"""
+        self.cursor.execute(statement, (attacking_id,))
+        player_attacking = self.cursor.fetchone()
+        return player_attacking
+
     def get_player_list(self):
-        self.cursor.execute("""SELECT * FROM player """)
-        return  self.cursor.fetchall()
-    
+        self.cursor.execute("""SELECT * FROM player ORDER BY player_id DESC LIMIT 10""")
+        return self.cursor.fetchall()
+
     def get_player_attacking_list(self):
-        self.cursor.execute("""SELECT * FROM player_attacking """)
-        return  self.cursor.fetchall()
+        self.cursor.execute("""SELECT player.player_name, player_attacking.attacking_id, player_attacking.player_id, player_attacking.crossing, player_attacking.finishing, player_attacking.heading_accuracy, player_attacking.short_passing, player_attacking.volleys FROM player_attacking , player WHERE(player.player_id = player_attacking.player_id) """)
+        return self.cursor.fetchall()
 # -------------ANIL----------------------------------
 
     def insert_player_profile(self, player_profile):
