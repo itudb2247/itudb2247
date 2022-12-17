@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content=""width=device-width, initial-scale-1.0>
+            <title>Add Team</title>
+    </head>
+    <body>
+        <div>
+
+            <form method="post">
+                <label for="team_name">Team Name</label>
+                <br>
+                <input type="text" name="team_name"
+                       value="{{ request.form['team_name'] }}"></input>
+                <br>
+
+                <label for="league">League</label>
+                <br>
+                <input type="text" name="league"
+                       value="{{ request.form['league'] }}"></input>
+                <br>
+
+                <label for="overall">Overall</label>
+                <br>
+                <input type="text" name="overall"
+                       value="{{ request.form['overall'] }}"></input>
+                <br>
+
+                <label for="attack">Attack</label>
+                <br>
+                <input type="text" name="attack"
+                       value="{{ request.form['attack'] }}"></input>
+                <br>
+
+                <label for="midfield">Midfield</label>
+                <br>
+                <input type="text" name="midfield"
+                       value="{{ request.form['midfield'] }}"></input>
+                <br>
+        
+                <label for="defense">Defense</label>
+                <br>
+                <input type="text" name="defense"
+                       value="{{ request.form['defense'] }}"></input>
+                <br>
+                
+                <label for="international_prestige">International Prestige</label>
+                <br>
+                <input type="text" name="international_prestige"
+                       value="{{ request.form['international_prestige'] }}"></input>
+                <br>
+
+                <label for="domestic_prestige">Domestic Prestige</label>
+                <br>
+                <input type="text" name="domestic_prestige"
+                       value="{{ request.form['domestic_prestige'] }}"></input>
+                <br>
+
+                <label for="transfer_budget">Transfer Budget</label>
+                <br>
+                <input type="text" name="transfer_budget"
+                       value="{{ request.form['transfer_budget'] }}"></input>
+                <br>
+
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
+
+    </body>
+</html>

@@ -182,26 +182,26 @@ class Database:
   
     #team
     def insert_team(self,team):
-      statement="""INSERT INTO team(team_name,league,overall,attack,midfield,defense,international_prestige,domestic_prestige,transfer_budget) VALUES( '%s','%s','%s','%s','%s','%s','%s','%s','%s')"""
-      self.cursor.execute(statement,(team.team_name,team.league,team.overall,
-                          team.attack,team.midfield,team.defense,team.international_prestige,
-                          team.domestic_prestige,team.transfer_budget))
+      self.cursor.execute("""INSERT INTO team(team_name,league,overall,attack,midfield,defense,international_prestige,domestic_prestige,transfer_budget) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
+            (team.team_name,team.league,team.overall,
+            team.attack,team.midfield,team.defense,team.international_prestige,
+            team.domestic_prestige,team.transfer_budget))
       self.connection.commit()
       
-    def update_team(self,team):
+    def update_team(self,league,overall,attack,midfield,defense,international_prestige,domestic_prestige,transfer_budget,team_id):
       statement="""UPDATE team SET league=%s , overall=%s , attack=%s , midfield=%s , defense=%s , international_prestige=%s , domestic_prestige=%s , transfer_budget=%s WHERE team_id=%s"""
-      self.cursor.execute(statement,(team.league,team.overall,team.attack,team.midfield,team.defense,
-                                     team.international_prestige,team.domestic_prestige,team.transfer_budget))
+      self.cursor.execute(statement,(league,overall,attack,midfield,defense,
+                                     international_prestige,domestic_prestige,transfer_budget,team_id))
       self.connection.commit()
       
     def delete_team(self,team_id):
-      statement="""DELETE FROM team WHERE team_id=%s"""
+      statement="""DELETE FROM team WHERE (team_id='{}')""".format(team_id)
       self.cursor.execute(statement,(team_id))
       self.connection.commit()
       
     def get_team(self,team_id):
       statement="""SELECT FROM team WHERE team_id=%s"""
-      self.cursors.execute(statement,(team_id))
+      self.cursor.execute(statement,(team_id))
       team=self.cursor.fetchone()
       self.connection.commit()
       return team
@@ -209,7 +209,7 @@ class Database:
       
     #team_tactics
     def insert_team_tactics(self,team_tactics):
-      statement="""INSERT INTO team_tactics(defensive_style,team_width,depth,offensive_style,width,players_in_box,corners,freekicks) VALUES('%s','%s','%s','%s','%s','%s','%s','%s')"""
+      statement="""INSERT INTO team_tactics(defensive_style,team_width,depth,offensive_style,width,players_in_box,corners,freekicks) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)"""
       self.cursor.execute(statement,(team_tactics.defensive_style,team_tactics.team_width,team_tactics.depth,team_tactics.offensive_style,
       team_tactics.width,team_tactics.players_in_box,team_tactics.corners,team_tactics.freekicks))
       self.connection.commit()
@@ -221,16 +221,48 @@ class Database:
       self.connection.commit()
     
     def delete_team_tactics(self,tactic_id):
-      statement="""DELETE FROM team_tactics WHERE (tactic_id=%s)"""
+      statement="""DELETE FROM team_tactics WHERE (tactic_id='{}')""".format(tactic_id)
       self.cursor.execute(statement,(tactic_id))
       self.connection.commit()
     
     def get_team_tactics(self,tactic_id):
       statement="""SELECT FROM team_tactics WHERE tactic_id=%s"""
-      self.cursors.execute(statement,(tactic_id))
+      self.cursor.execute(statement,(tactic_id))
       team_tactics=self.cursor.fetchone()
       self.connection.commit()
       return team_tactics
     
-   
-    
+    def view_teams(self):
+      self.cursor.execute('SELECT * FROM team;')
+      teams=self.cursor.fetchall()
+      return teams
+
+    def view_players(self):
+      self.cursor.execute('SELECT * FROM player;')
+      players=self.cursor.fetchall()
+      return players
+
+    def view_all_tactics(self):
+      self.cursor.execute('SELECT * FROM team_tactics;')
+      tactics=self.cursor.fetchall()
+      return tactics
+
+    def view_leagues(self):
+      self.cursor.execute('SELECT DISTINCT league FROM team;')
+      leagues=self.cursor.fetchall()
+      return leagues 
+
+    def view_teams_of_league(self,league):
+      self.cursor.execute("SELECT * FROM team WHERE (league='{}')".format(league))
+      teams=self.cursor.fetchall()
+      return teams
+
+    def view_players_of_team(self,team_id):
+      self.cursor.execute("SELECT * FROM player WHERE team_id='{}'".format(team_id) )
+      players=self.cursor.fetchall()
+      return players
+
+    def view_tactics(self,team_id):
+      self.cursor.execute("SELECT * FROM team_tactics WHERE team_id='{}'".format(team_id))
+      tactic=self.cursor.fetchall()
+      return tactic

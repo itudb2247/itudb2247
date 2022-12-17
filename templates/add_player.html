@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content=""width=device-width, initial-scale-1.0>
+            <title>Add Player</title>
+    </head>
+    <body>
+        <div>
+
+            <form method="post">
+                <label for="name">Name</label>
+                <br>
+                <input type="text" name="name"
+                       value="{{ request.form['name'] }}"></input>
+                <br>
+        
+                <!-- <label for="date_of_birth">Date of Birth (MM/DD/YYYY)</label>
+                <br>
+                <input type="text" name="date_of_birth"
+                       value="{{ request.form['date_of_birth'] }}"></input>
+                <br> -->
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
+
+    </body>
+</html>

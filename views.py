@@ -10,6 +10,7 @@ def home():
 
 # ADD FUNCTIONS
 
+
 @views.route('/add_player/', methods=('GET', 'POST'))
 def add_player():
     if request.method == 'POST':
@@ -107,7 +108,7 @@ def add_team():
         domestic_prestige,transfer_budget))
         flash('Successfully inserted new team!')
         return redirect(url_for('views.home'))
-    return render_template('add_team.html')
+    return render_template('team/add_team.html')
 
 @views.route('/add_team_tactics',methods=('GET','POST'))
 def add_team_tactics():
@@ -127,7 +128,7 @@ def add_team_tactics():
         corners,freekicks,team_id))
         flash('Successfully inserted new team tactics!')
         return redirect(url_for('views.home'))
-    return render_template('add_team_tactics.html')
+    return render_template('team_tactics/add_team_tactics.html')
 
 # DELETE FUNCTIONS
 
@@ -197,7 +198,7 @@ def delete_team():
         db.delete_team(team_id)
         flash('Team "{}"  was successfully deleted!'.format(team_id))
         return redirect(url_for('views.home'))
-    return render_template('delete_team.html')
+    return render_template('team/delete_team.html')
 
 @views.route('/delete_team_tactics', methods=('GET', 'POST'))
 def delete_team_tactics():
@@ -208,7 +209,7 @@ def delete_team_tactics():
         db.delete_team_tactics(tactic_id)
         flash('Team tactics "{}"  was successfully deleted!'.format(tactic_id))
         return redirect(url_for('views.home'))
-    return render_template('delete_team_tactics.html')
+    return render_template('team_tactics/delete_team_tactics.html')
 
 
 
@@ -235,8 +236,99 @@ def search_team():
         teams = db.get_team(team_name)
         return render_template('search.html', teams=teams)
 
+#######
+@views.route('navbar')
+def navbar():
+    return render_template('navbar.html')
+
+@views.route('/view_team',methods=('GET','POST'))
+def view_team():
+    db=Database()
+    teams=db.view_teams()
+    return render_template('team/teams.html',teams=teams)
+
+@views.route('/view_player',methods=('GET','POST'))
+def view_player():
+    db=Database()
+    players=db.view_players()
+    return render_template('team/players.html',players=players)
+
+@views.route('/view_all_tactics',methods=('GET','POST'))
+def view_all_tactics():
+    db=Database()
+    tactics=db.view_all_tactics()
+    return render_template('team_tactics/tactics.html',tactics=tactics)
+
+@views.route('/view_league',methods=('GET','POST'))
+def view_league():
+    db=Database()
+    leagues=db.view_leagues()
+    return render_template('team/leagues.html',leagues=leagues)
+
+@views.route('/view_teams_of_league',methods=('GET','POST'))
+def view_teams_of_league():
+    if request.method=='GET':
+        league=request.args.get("league")
+        db=Database()
+        teams=db.view_teams_of_league(league)
+    return render_template('team/teams_cards.html',teams=teams)
+
+@views.route('/view_players_of_team',methods=('GET','POST'))
+def view_players_of_team():
+    team_id=request.args.get("team_id")
+    db=Database()
+    players=db.view_teams_of_league(team_id)
+    return render_template('team/view_players_of_team.html',players=players)
+
+@views.route('/view_tactics',methods=('GET','POST'))
+def view_tactics():
+    team_id=request.args.get("team_id")
+    db=Database()
+    tactic=db.view_tactics(team_id)
+    return render_template('team_tactics/team_based_tactics.html',tactic=tactic)
+
+@views.route('/update_player', methods=('GET', 'POST'))
+def update_player():
+   if request.method == 'POST':
+         player_id=request.args.get("player_id")
+         date_of_birth = request.form['date_of_birth']
+         height = request.form['height']
+         weight = request.form['weight']
+         overall_rating = request.form['overall_rating']
+         potential_rating = request.form['potential_rating']
+         best_position = request.form['best_position']
+         best_overall_rating = request.form['best_overall_rating']
+         value = request.form['value']
+         wage = request.form['wage']
+         player_image_url = request.form['player_image_url']
+         team_id = request.form['team_id']
+         nationality = request.form['nationality']
+
+         db = Database()
+         db.update_player(date_of_birth, height, weight, overall_rating,potential_rating, best_position, best_overall_rating, value, wage,player_image_url,nationality,team_id,player_id)
+         flash('Player "{}"  was successfully updated!'.format(player_id))
+   return render_template('update_player.html')
 
 
+
+@views.route('/update_team',methods=('GET','POST'))
+def update_team():
+    if request.method=='POST':
+        team_id=request.args.get("team_id")
+        league=request.form['league']
+        overall=request.form['overall']
+        attack=request.form['attack']
+        midfield=request.form['midfield']
+        defense=request.form['defense']
+        international_prestige=request.form['international_prestige']
+        domestic_prestige=request.form['domestic_prestige']
+        transfer_budget=request.form['transfer_budget']
+
+        db=Database()
+        db.update_team(league,overall,attack,midfield,defense,international_prestige,domestic_prestige,transfer_budget,team_id)
+        flash('Team was successfullu updated')
+    return render_template('team/update_team.html')
+    
 # NOT WORKING CORRECTLY
 # @views.route('/update_player', methods=('GET', 'POST'))
 # def update_player(player_id):

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+             <meta name="viewport" content=""width=device-width, initial-scale-1.0>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+            <title>Delete Player</title>
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        <div class="Team">
+            <form method="post">
+                <br>
+                <label for="league">League</label>
+                <br>
+                <input type="text" name="league" placeholder="{{request.args.get('league')}}" 
+                   value="{{ request.form['league'] }}"></input>
+                <br>
+
+                <label for="overall">overall</label>
+                <br>
+                <input type="text" name="overall" placeholder="{{request.args.get('overall')}}" 
+                       value="{{ request.form['overall'] }}"></input>
+                <br>
+
+                <label for="attack">attack</label>
+                <br>
+                <input type="text" name="attack" placeholder="{{request.args.get('attack')}}" 
+                       value="{{ request.form['attack'] }}"></input>
+                <br>
+
+                <label for="midfield">midfield</label>
+                <br>
+                <input type="text" name="midfield" placeholder="{{request.args.get('midfield')}}" 
+                       value="{{ request.form['midfield'] }}"></input>
+                <br>
+
+                <label for="defense">defense</label>
+                <br>
+                <input type="text" name="defense" placeholder="{{request.args.get('defense')}}" 
+                       value="{{ request.form['defense'] }}"></input>
+                <br>
+
+                <label for="international_prestige">international_prestige</label>
+                <br>
+                <input type="text" name="international_prestige" placeholder="{{request.args.get('international_prestige')}}" 
+                       value="{{ request.form['international_prestige'] }}"></input>
+                <br>
+
+                <label for="domestic_prestige">domestic_prestige</label>
+                <br>
+                <input type="text" name="domestic_prestige"  placeholder="{{request.args.get('domestic_prestige')}}" 
+                       value="{{ request.form['domestic_prestige'] }}"></input>
+                <br>
+
+                <label for="transfer_budget">transfer_budget</label>
+                <br>
+                <input type="text" name="transfer_budget" placeholder="{{request.args.get('transfer_budget')}}" 
+                       value="{{ request.form['transfer_budget'] }}"></input>
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
+
+    </body>
+</html>

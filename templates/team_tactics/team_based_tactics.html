@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+            <title>View Teams in Leagues</title>
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        <h1>{% block title %} Team Tactic{% endblock %}</h1>
+        <div class="Team_tactics">
+            
+                <ul class="list-group">
+                    {% for Team_tactics in tactic %}
+                    <li class="list-group-item active">Defense</li>
+                    <li class="list-group-item">Defensive Style :{{ Team_tactics[2] }}</li>
+                    <li class="list-group-item">Width {{ Team_tactics[3] }}</li>
+                    <li class="list-group-item">Depth {{ Team_tactics[4] }}</li>
+                    {% endfor %} 
+                </ul>
+                <ul class="list-group">
+                    {% for Team_tactics in tactic %}
+                    <li class="list-group-item active">Offense</li>
+                    <li class="list-group-item">Offensive Style :{{ Team_tactics[5] }}</li>
+                    <li class="list-group-item">Width {{ Team_tactics[6] }}</li>
+                    <li class="list-group-item">Players In Box {{ Team_tactics[7] }}</li>
+                    <li class="list-group-item">Corners {{ Team_tactics[8] }}</li>
+                    <li class="list-group-item">Freekicks {{ Team_tactics[9] }}</li>
+                    {% endfor %} 
+                </ul>   
+            
+        </div>
+    </body>
+</html>

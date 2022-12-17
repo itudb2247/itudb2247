@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content=""width=device-width, initial-scale-1.0>
+            <title>Update Player</title>
+    </head>
+    <body>
+        <div>
+
+            <form method="post">
+                <br>
+        
+                <label for="date_of_birth">Date of Birth (MM/DD/YYYY)</label>
+                <br>
+                <input type="text" name="date_of_birth"
+                       value="{{ request.form['date_of_birth'] }}"></input>
+                <br>
+
+                <label for="height">height</label>
+                <br>
+                <input type="text" name="height"
+                       value="{{ request.form['height'] }}"></input>
+                <br>
+
+                <label for="weight">weight</label>
+                <br>
+                <input type="text" name="weight"
+                       value="{{ request.form['weight'] }}"></input>
+                <br>
+
+                <label for="overall_rating">overall_rating</label>
+                <br>
+                <input type="text" name="overall_rating"
+                       value="{{ request.form['overall_rating'] }}"></input>
+                <br>
+
+                <label for="potential_rating">potential_rating</label>
+                <br>
+                <input type="text" name="potential_rating"
+                       value="{{ request.form['potential_rating'] }}"></input>
+                <br>
+
+                <label for="best_position">best_position</label>
+                <br>
+                <input type="text" name="best_position"
+                       value="{{ request.form['best_position'] }}"></input>
+                <br>
+
+                <label for="best_overall_rating">best_overall_rating</label>
+                <br>
+                <input type="text" name="best_overall_rating"
+                       value="{{ request.form['best_overall_rating'] }}"></input>
+                <br>
+
+                <label for="value">value</label>
+                <br>
+                <input type="text" name="value"
+                       value="{{ request.form['value'] }}"></input>
+                <br>
+
+                <label for="wage">wage</label>
+                <br>
+                <input type="text" name="wage"
+                       value="{{ request.form['wage'] }}"></input>
+                <br>
+
+                <label for="player_image_url">player_image_url</label>
+                <br>
+                <input type="text" name="player_image_url"
+                       value="{{ request.form['player_image_url'] }}"></input>
+                <br>
+
+                <label for="team_id">team_id</label>
+                <br>
+                <input type="text" name="team_id"
+                       value="{{ request.form['team_id'] }}"></input>
+                <br>
+
+                <label for="nationality">nationality</label>
+                <br>
+                <input type="text" name="nationality"
+                       value="{{ request.form['nationality'] }}"></input>
+                <br>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
+
+    </body>
+</html>
