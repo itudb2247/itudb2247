@@ -1,49 +1,58 @@
-from flask import current_app, render_template, redirect, request, url_for, flash, Blueprint
+from flask import current_app, render_template, redirect, request, url_for, flash
 import classes
+from flask_login.utils import login_required
+from forms import LoginForm, SignupForm
+from user import User, get_user
+from passlib.hash import pbkdf2_sha256 as hasher
+from flask_login import login_user, logout_user, current_user
 
 # Specify the server response to return
 def home_page():
     return render_template("index.html")
 
-# def login_page():
-#     form = LoginForm()
-#     if form.validate_on_submit():
-#         username = form.data["username"]
-#         user = get_user(username)
-#         if user is not None:
-#             password = form.data["password"]
-#             if hasher.verify(password, user.password):
-#                 login_user(user)
-#                 flash("You have logged in.")
-#                 next_page = request.args.get("next", url_for("home_page"))
-#                 return redirect(next_page)
-#         flash("Invalid credentials.")
-#     return render_template("login.html", form=form)
+def login_page():
+    form = LoginForm()
+    if form.validate_on_submit():
+        username = form.data["username"]
+        user = get_user(username)
+        if user is not None:
+            password = form.data["password"]
+            if hasher.verify(password, user.password):
+                login_user(user)
+                flash("You have logged in.")
+                next_page = request.args.get("next", url_for("home_page"))
+                return redirect(next_page)
+        flash("Invalid credentials.")
+    return render_template("login.html", form=form)
 
-# def login_page():
-#     # Here we use a class of some kind to represent and validate our
-#     # client-side form data. For example, WTForms is a library that will
-#     # handle this for us, and we use a custom LoginForm to validate.
-#     form = LoginForm()
-#     if form.validate_on_submit():
-#         # Login and validate the user.
-#         # user should be an instance of your `User` class
-#         login_user(user)
 
-#         flask.flash('Logged in successfully.')
+def logout_page():
+    logout_user()
+    flash("You have logged out.")
+    return redirect(url_for("home_page"))
 
-#         next = flask.request.args.get('next')
-#         # is_safe_url should check if the url is safe for redirects.
-#         # See http://flask.pocoo.org/snippets/62/ for an example.
-#         if not is_safe_url(next):
-#             return flask.abort(400)
+def signup_page():
+    form = SignupForm()
+    db = current_app.config["db"]
+    if form.validate_on_submit():
+        username = form.data["username"]
+        search_user = get_user(username)
+        if search_user is not None:
+            flash("Username taken.")
+        else:
+            password = form.data["password"]
+            if len(password) < 5:
+                flash("Password must be longer than 5 characters.")
+            else:
+                hashed_password = hasher.hash(password)
+                db.insert_user(username, hashed_password)
+                user_ = User(username, password)
+                flash("You have signed up and logged in.")
+                login_user(user_)
+                next_page = request.args.get("next", url_for("home_page"))
+                return redirect(next_page)
+    return render_template("register.html", form=form)
 
-#         return flask.redirect(next or flask.url_for('index'))
-#     return flask.render_template('login.html', form=form)
-
-# # def logout_page():
-
-# # def register_page():
 
 def player_page():
     db = current_app.config["db"]
@@ -59,7 +68,7 @@ def player_attacking_page():
 
 # INSERT FUNCTIONS
 
-
+@login_required
 def add_player():
     if request.method == "POST":
         name = request.form["name"]
@@ -84,7 +93,7 @@ def add_player():
         return redirect(url_for("player_page"))
     return render_template("add_player.html")
 
-
+@login_required
 def add_player_attacking():
     if request.method == "POST":
         player_id = request.form["player_id"]
@@ -101,7 +110,7 @@ def add_player_attacking():
         return redirect(url_for("player_attacking_page"))
     return render_template("add_player_attacking.html")
 
-
+@login_required
 def add_player_profile():
     if request.method == 'POST':
         player_id = request.form['player_id']
@@ -119,7 +128,7 @@ def add_player_profile():
         return redirect(url_for('home_page'))
     return render_template('add_player_profile.html')
 
-
+@login_required
 def add_player_skills():
     if request.method == 'POST':
         player_id = request.form['player_id']
@@ -136,7 +145,7 @@ def add_player_skills():
         return redirect(url_for('home_page'))
     return render_template('add_player_skills.html')
 
-
+@login_required
 def add_player_goalkeeping():
     if request.method == 'POST':
         player_id = request.form['player_id']
@@ -153,7 +162,7 @@ def add_player_goalkeeping():
         return redirect(url_for('home_page'))
     return render_template('add_player_goalkeeping.html')
 
-
+@login_required
 def add_player_mentality():
     if request.method == 'POST':
         player_id = request.form['player_id']
@@ -173,7 +182,7 @@ def add_player_mentality():
     return render_template('add_player_mentality.html')
 
 # DELETE FUNCTION
-
+@login_required
 def delete_player(player_id):
     db = current_app.config["db"]
     db.delete_player(int(player_id))
@@ -182,7 +191,7 @@ def delete_player(player_id):
     flash('Player "{}"  was successfully deleted!'.format(player_id))
     return redirect(url_for('player_page'))
 
-
+@login_required
 def delete_player_attacking(attacking_id):
     db = current_app.config["db"]
     db.delete_player_attacking(attacking_id)
@@ -190,7 +199,7 @@ def delete_player_attacking(attacking_id):
             attacking_id))
     return redirect(url_for('player_attacking_page'))
 
-
+@login_required
 def delete_player_profile():
     if request.method == 'POST':
         profile_id = request.form['profile_id']
@@ -201,7 +210,7 @@ def delete_player_profile():
         return redirect(url_for('home_page'))
     return render_template('delete_player_profile.html')
 
-
+@login_required
 def delete_player_skills():
     if request.method == 'POST':
         skills_id = request.form['skills_id']
@@ -212,7 +221,7 @@ def delete_player_skills():
         return redirect(url_for('home_page'))
     return render_template('delete_player_skills.html')
 
-
+@login_required
 def delete_player_goalkeeping():
     if request.method == 'POST':
         goalkeeping_id = request.form['goalkeeping_id']
@@ -223,7 +232,7 @@ def delete_player_goalkeeping():
         return redirect(url_for('home_page'))
     return render_template('delete_player_goalkeeping.html')
 
-
+@login_required
 def delete_player_mentality():
     if request.method == 'POST':
         mentality_id = request.form['mentality_id']
@@ -235,6 +244,7 @@ def delete_player_mentality():
     return render_template('delete_player_mentality.html')
 
 # UPDATE FUNCTIONS
+@login_required
 def update_player(player_id):
     db = current_app.config["db"]
     player = db.get_player(player_id)
@@ -274,6 +284,7 @@ def update_player(player_id):
         return redirect(url_for("player_page"))
     return render_template("update_player.html")
 
+@login_required
 def update_player_attacking(attacking_id):
     db = current_app.config["db"]
     player_attacking = db.get_player_attacking(attacking_id)

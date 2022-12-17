@@ -64,15 +64,16 @@ class Database:
     #     attacking_id = self.cursor.fetchone()
     #     # print(attacking_id)
     #     return attacking_id
-    
-    def get_player_attacking(self,attacking_id):
+
+    def get_player_attacking(self, attacking_id):
         statement = """SELECT player.player_name, player_attacking.attacking_id, player_attacking.player_id, player_attacking.crossing, player_attacking.finishing, player_attacking.heading_accuracy, player_attacking.short_passing, player_attacking.volleys FROM player_attacking , player WHERE(player.player_id = player_attacking.player_id) AND (player_attacking.attacking_id = %s)"""
         self.cursor.execute(statement, (attacking_id,))
         player_attacking = self.cursor.fetchone()
         return player_attacking
 
     def get_player_list(self):
-        self.cursor.execute("""SELECT * FROM player ORDER BY player_id DESC LIMIT 10""")
+        self.cursor.execute(
+            """SELECT * FROM player ORDER BY player_id DESC LIMIT 10""")
         return self.cursor.fetchall()
 
     def get_player_attacking_list(self):
@@ -181,3 +182,23 @@ class Database:
         self.cursor.execute(
             "DELETE FROM player_goalkeeping WHERE goalkeeping_id='%s'", (goalkeeping_id,))
         self.connection.commit()
+
+# ---------------------- Bilge user methods ---------------------
+    def insert_user(self, username, password):
+        query = "INSERT INTO users (username,password) VALUES ('{}','{}')".format(
+                username, password)
+        self.cursor.execute(query)
+        self.connection.commit()
+
+    def delete_user(self, username):
+        query = "DELETE FROM users WHERE username = '{}'".format(username)
+        self.cursor.execute(query)
+        self.connection.commit()
+
+    def get_user(self, username):
+        query = "SELECT * FROM users WHERE username = '{}'".format(username)
+        self.cursor.execute(query)
+        user = self.cursor.fetchone()
+        if user is None:
+            return None
+        return user

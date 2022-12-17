@@ -1,15 +1,13 @@
 import psycopg2 as dbapi
 import pandas as pd
-import numpy
 INIT = [
-    # """
-    # CREATE TABLE IF NOT EXISTS user(
-    #     name VARCHAR(80) NOT NULL,
-    #     password VARCHAR(80) NOT NULL,
-    #     email VARCHAR(50) PRIMATY KEY UNIQUE NOT NULL,
-    #     username VARCHAR(50) UNIQUE NOT NULL
-    # )
-    # """,
+    """
+    CREATE TABLE IF NOT EXISTS users(
+        username VARCHAR(80) UNIQUE NOT NULL,
+        password VARCHAR(300) NOT NULL,
+        PRIMARY KEY (username)
+    )
+""",
     """
     CREATE TABLE IF NOT EXISTS team(
         team_id INTEGER NOT NULL,
@@ -179,19 +177,27 @@ def fill_tables():
     query_insert_player_mentality = """INSERT INTO player_mentality(aggression,interceptions,positioning,vision,penalties,composure) VALUES( '%s','%s', '%s', '%s', '%s', '%s')"""
 
     # CSVs
-    df_player_profile = pd.read_csv("./new/tbl_player_profile.csv", usecols=["str_preferred_foot", "int_weak_foot", "int_skill_moves", "int_international_reputations", "str_work_rate", "str_body_type"])
-    df_player_skills = pd.read_csv("./new/tbl_player_skill.csv", dtype=int, usecols=["int_dribbling", "int_curve", "int_fk_accuracy", "int_long_passing", "int_ball_control"])
-    df_player_movement = pd.read_csv("./new/tbl_player_movement.csv", dtype=int, usecols=["int_acceleration", "int_sprint_speed", "int_agility", "int_reactions", "int_balance"])
-    df_player_power = pd.read_csv("./new/tbl_player_power.csv", dtype=int, usecols=["int_shot_power", "int_jumping", "int_stamina", "int_strength", "int_long_shots"])
-    df_player_goalkeeping = pd.read_csv("./new/tbl_player_goalkeeping.csv", dtype=int, usecols=["int_diving", "int_handling", "int_kicking", "int_positioning", "int_reflexes"])
-    df_player_mentality = pd.read_csv("./new//tbl_player_mentality.csv", dtype=int, usecols=["int_aggression", "int_interceptions", "int_positioning", "int_vision", "int_penalties", "int_composure"])
-    df_team = pd.read_csv("./new/tbl_team.csv",usecols=["int_team_id"], dtype=int)
+    df_player_profile = pd.read_csv("./new/tbl_player_profile.csv", usecols=[
+                                    "str_preferred_foot", "int_weak_foot", "int_skill_moves", "int_international_reputations", "str_work_rate", "str_body_type"])
+    df_player_skills = pd.read_csv("./new/tbl_player_skill.csv", dtype=int, usecols=[
+                                   "int_dribbling", "int_curve", "int_fk_accuracy", "int_long_passing", "int_ball_control"])
+    df_player_movement = pd.read_csv("./new/tbl_player_movement.csv", dtype=int, usecols=[
+                                     "int_acceleration", "int_sprint_speed", "int_agility", "int_reactions", "int_balance"])
+    df_player_power = pd.read_csv("./new/tbl_player_power.csv", dtype=int, usecols=[
+                                  "int_shot_power", "int_jumping", "int_stamina", "int_strength", "int_long_shots"])
+    df_player_goalkeeping = pd.read_csv("./new/tbl_player_goalkeeping.csv", dtype=int, usecols=[
+                                        "int_diving", "int_handling", "int_kicking", "int_positioning", "int_reflexes"])
+    df_player_mentality = pd.read_csv("./new//tbl_player_mentality.csv", dtype=int, usecols=[
+                                      "int_aggression", "int_interceptions", "int_positioning", "int_vision", "int_penalties", "int_composure"])
+    df_team = pd.read_csv("./new/tbl_team.csv",
+                          usecols=["int_team_id"], dtype=int)
     df_player = pd.read_csv("./new/n.csv", usecols=["str_player_name", "dt_date_of_birth", "int_height", "int_weight", "int_overall_rating", "int_potential_rating",
                             "str_best_position", "int_best_overall_rating", "int_value", "int_wage", "str_player_image_url", "int_team_id", "str_nationality"])
     # fill the null team id values with -1 which is no team
     df_player["int_team_id"] = df_player["int_team_id"].fillna(-1)
     # print(df_player)
-    df_player_attacking = pd.read_csv("./new/tbl_player_attacking.csv", dtype=int, usecols=["int_crossing", "int_finishing", "int_heading_accuracy", "int_short_passing", "int_volleys"])
+    df_player_attacking = pd.read_csv("./new/tbl_player_attacking.csv", dtype=int, usecols=[
+                                      "int_crossing", "int_finishing", "int_heading_accuracy", "int_short_passing", "int_volleys"])
 
     # INSERTION
     df_team.apply(lambda x: insert(query_insert_team, x, cur), axis=1)
