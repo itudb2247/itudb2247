@@ -18,3 +18,9 @@ login and logout pages are created, add and delete functions are tested.
 
 16.12.2022
 update view functions are created and frontend of the html pages are edited.
+
+17.12.2022
+login pages updated. Form validation function created.
+
+18.12.2022
+add pages linked and frontend updated.
