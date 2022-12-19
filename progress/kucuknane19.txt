@@ -12,3 +12,10 @@ Week 3 | 09.12.2022
     -Created views.py that includes flask functions that can perform insert and delete on web application
     -Created html files for web application
     -Some issues regarding database and classes are fixed
+
+Week 4 | 19.12.2022
+    -Prepared the final version of the front-end
+    -Finalized the final versions of add, update and delete functions
+    -Implemented search for players and teams
+    -Added log-in feature
+    -Merged the project team members functions into one and optimized the database
