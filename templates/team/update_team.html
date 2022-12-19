@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+       <meta name="viewport" content="" width=device-width, initial-scale-1.0>
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+              crossorigin="anonymous">
+
+       <title>Update Team</title>
+    </head>
+
+    <body>
+        {% include 'navbar.html' %}
+        <div class="Team search-box">
+            <form method="post">
+                <br>
+                <label for="league">League</label>
+                <br>
+                <input type="text" name="league" placeholder="{{request.args.get('league')}}" 
+                   value="{{ request.form['league'] }}"></input>
+                <br>
+
+                     <label for="overall">Overall</label>
+                <br>
+                <input type="text" name="overall" placeholder="{{request.args.get('overall')}}" 
+                       value="{{ request.form['overall'] }}"></input>
+                <br>
+                     {% if 'overall' in values.errors %}<span>
+                            <p class="alert alert-error">
+                                   {{ values.errors['overall'] }}
+                            </p>
+
+                     </span>{% endif %}
+
+                     <label for="attack">Attack</label>
+                <br>
+                <input type="text" name="attack" placeholder="{{request.args.get('attack')}}" 
+                       value="{{ request.form['attack'] }}"></input>
+                <br>
+                     {% if 'attack' in values.errors %}<span>
+
+                            <p class="alert alert-error">
+                                   {{ values.errors['attack'] }}
+                            </p>
+
+                     </span>{% endif %}
+
+                     <label for="midfield">Midfield</label>
+                <br>
+                <input type="text" name="midfield" placeholder="{{request.args.get('midfield')}}" 
+                       value="{{ request.form['midfield'] }}"></input>
+
+                <br>
+                     {% if 'midfield' in values.errors %}<span>
+                            <p class="alert alert-error">
+                                   {{ values.errors['midfield'] }}
+                            </p>
+
+                     </span>{% endif %}
+
+                     <label for="defense">Defense</label>
+                <br>
+                <input type="text" name="defense" placeholder="{{request.args.get('defense')}}" 
+                       value="{{ request.form['defense'] }}"></input>
+                <br>
+                     {% if 'defense' in values.errors %}<span>
+                            <p class="alert alert-error">
+                                   {{ values.errors['defense'] }}
+                            </p>
+
+                     </span>
+                     {% endif %}
+
+                     <label for="international_prestige">International Prestige</label>
+                <br>
+                     <input type="number" name="international_prestige"
+                       value="{{ request.form['international_prestige'] }}"></input>
+                     {% if 'international_prestige' in values.errors %}<span>
+
+                            <p class="alert alert-error">
+                                   {{ values.errors['international_prestige'] }}
+                            </p>
+
+                     </span>{% endif %}
+                <br>
+
+                     <label for="domestic_prestige">Domestic Prestige</label>
+                <br>
+                     <input type="number" name="domestic_prestige"
+                       value="{{ request.form['domestic_prestige'] }}"></input>
+
+                     {% if 'domestic_prestige' in values.errors %}<span>
+
+                            <p class="alert alert-error">
+                                   {{ values.errors['domestic_prestige'] }}
+                            </p>
+
+                     </span>{% endif %}
+                <br>
+
+                     <label for="transfer_budget">Transfer Budget</label>
+                <br>
+                <input type="text" name="transfer_budget" placeholder="{{request.args.get('transfer_budget')}}" 
+                       value="{{ request.form['transfer_budget'] }}"></input>
+                <br>
+                     {% if 'transfer_budget' in values.errors %}
+                     <span>
+                            <p class="card-title">
+                                   {{ values.errors['transfer_budget'] }}
+                            </p>
+                     </span>
+                     {% endif %}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
+
+    </body>
+
+</html>

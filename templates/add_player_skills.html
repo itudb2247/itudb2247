@@ -1,56 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content=""width=device-width, initial-scale-1.0>
-            <title>Add Player Skills</title>
-    </head>
-    <body>
-        <div>
+<meta charset="UTF-8">
+<META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="" width=device-width, initial-scale-1.0>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='../styles/teams.css')}}">
+{% include 'navbar.html' %}
+<div>
 
-            <form method="post">
-                <label for="player_id">Player ID</label>
-                <br>
-                <input type="text" name="player_id"
-                       value="{{ request.form['player_id'] }}"></input>
-                <br>
+    <div class="add_player_profile">
+        <div class="search-box">
+            <div >
+                <div class="card-body text-center">
+                    <h4 class="card-title">ADD PLAYER SKILL</h5>
+                        <p class="card-text"></p>
 
-                <label for="dribbling">Dribbling</label>
-                <br>
-                <input type="text" name="dribbling"
-                       value="{{ request.form['dribbling'] }}"></input>
-                <br>
+                        <form method="post">
+                            <label for="dribbling">Dribbling</label>
+                            <br>
+                            <input type="number" name="dribbling" value="{{ request.form['dribbling'] }}"
+                                required="required"></input>
+                            {% if 'dribbling' in values.errors %}
+                            <p class="alert alert-error">
+                                {{ values.errors['dribbling'] }}
+                            </p>
+                            {% endif %}
+                            <br>
 
-                <label for="curve">Curve</label>
-                <br>
-                <input type="text" name="curve"
-                       value="{{ request.form['curve'] }}"></input>
-                <br>
+                            <label for="curve">Curve</label>
+                            <br>
+                            <input type="number" name="curve" value="{{ request.form['curve'] }}"
+                                required="required"></input>
+                            {% if 'curve' in values.errors %}
+                            <p class="alert alert-error">
+                                {{ values.errors['curve'] }}
+                            </p>
+                            {% endif %}
+                            <br>
 
-                <label for="fk_accuracy">Freekick Accuracy</label>
-                <br>
-                <input type="text" name="fk_accuracy"
-                       value="{{ request.form['fk_accuracy'] }}"></input>
-                <br>
+                            <label for="fk_accuracy">Freekick Accuracy</label>
+                            <br>
+                            <input type="number" name="fk_accuracy" value="{{ request.form['fk_accuracy'] }}"
+                                required="required"></input>
+                            {% if 'fk_accuracy' in values.errors %}
+                            <p class="alert alert-error">
+                                {{ values.errors['fk_accuracy'] }}
+                            </p>
+                            {% endif %}
+                            <br>
 
-                <label for="long_passing">Long Passing</label>
-                <br>
-                <input type="text" name="long_passing"
-                       value="{{ request.form['long_passing'] }}"></input>
-                <br>
+                            <label for="long_passing">Long Passing</label>
+                            <br>
+                            <input type="number" name="long_passing" value="{{ request.form['long_passing'] }}"
+                                required="required"></input>
+                            {% if 'long_passing' in values.errors %}
+                            <p class="alert alert-error">
+                                {{ values.errors['long_passing'] }}
+                            </p>
+                            {% endif %}
+                            <br>
 
-                <label for="ball_control">Ball Control</label>
-                <br>
-                <input type="text" name="ball_control"
-                       value="{{ request.form['ball_control'] }}"></input>
-                <br>
+                            <label for="ball_control">Ball Control</label>
+                            <br>
+                            <input type="number" name="ball_control" value="{{ request.form['ball_control'] }}"
+                                required="required"></input>
+                            {% if 'ball_control' in values.errors %}
+                            <p class="alert alert-error">
+                                {{ values.errors['ball_control'] }}
+                            </p>
+                            {% endif %}
+                            <br>
 
-                
-                <button type="submit">Submit</button>
-            </form>
+
+                            <button type="submit">Submit</button>
+                        </form>
+
+                </div>
+            </div>
         </div>
-        
+    </div>
 
-    </body>
-</html>
+
+</div>

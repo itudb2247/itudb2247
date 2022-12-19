@@ -6,3 +6,10 @@ Preprocess the data ,fix dublicated issue.Try database function.Solve Serial pro
 -Created views.py that includes flask functions that can perform insert and delete on web application
 -Created html files for web application
 -Some issues regarding database and classes are fixed
+18.12.2022
+-Improve the front-end of application.Prepare the last version for front-end.
+-Fix some redirecting problem while editing and deleting database operation.
+-Finalized the final versions of add, update and delete functions.
+-Implemented search for players and teams
+-Added log-in feature
+-Merge the files of all group member and optimizied database function.

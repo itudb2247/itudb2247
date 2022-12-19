@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+             <meta name="viewport" content=""width=device-width, initial-scale-1.0>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+            <title>Update Tactics</title>
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        <div class="Team_tactics search-box">
+            <form method="post">
+                <br>
+                <label for="defensive_style">Defensive Style</label>
+                <br>
+                <input type="text" name="defensive_style"
+                   value="{{ request.form['defensive_style'] }}"></input>
+                <br>
+
+                <label for="team_width">Width</label>
+                <br>
+                <input type="text" name="team_width"
+                       value="{{ request.form['team_width'] }}"></input>
+                <br>
+
+                <label for="depth">depth</label>
+                <br>
+                <input type="text" name="depth" 
+                       value="{{ request.form['depth'] }}"></input>
+                <br>
+
+                <label for="offensive_style">offensive_style</label>
+                <br>
+                <input type="text" name="offensive_style"
+                       value="{{ request.form['offensive_style'] }}"></input>
+                <br>
+
+                <label for="width">width</label>
+                <br>
+                <input type="text" name="width"
+                       value="{{ request.form['width'] }}"></input>
+                <br>
+
+                <label for="players_in_box">players_in_box</label>
+                <br>
+                <input type="text" name="players_in_box"
+                       value="{{ request.form['players_in_box'] }}"></input>
+                <br>
+
+                <label for="corners">corners</label>
+                <br>
+                <input type="text" name="corners" 
+                       value="{{ request.form['corners'] }}"></input>
+                <br>
+
+                <label for="freekicks">freekicks</label>
+                <br>
+                <input type="text" name="freekicks"
+                       value="{{ request.form['freekicks'] }}"></input>
+                <br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
+
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content=""width=device-width, initial-scale-1.0>
+            <title>Delete Player</title>
+    </head>
+    <body>
+        <div>
+
+            <form action="{{ url_for('delete_team') }}" method="POST">
+                <label for="name">Team ID</label>
+                <br>
+                <input type="text" name="team_id"
+                       value="{{ request.form['team_id'] }}"></input>
+                <br>
+
+                <input type="submit" value="Delete Team"
+                        class="btn btn-danger btn-sm"
+                        onclick="return confirm('Are you sure you want to delete this team?')">
+            </form>
+
+        </div>
+        
+    </body>
+</html>

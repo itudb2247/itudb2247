@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+       {% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="" width=device-width, initial-scale-1.0>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+            <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='../styles/teams.css')}}">
+            <title>Add Team</title>
+            {% include 'navbar.html' %}
+    </head>
+    <body>
+        <div class="search-box text center">
+              
+            <form method="post">
+                     <label for="team_name">Team Name*</label>
+                <br>
+                     <input type="text" name="team_name" value="{{ request.form['team_name'] }}"
+                            required="required"></input>
+                     {% if 'team_name' in values.errors %}
+                     <p class="alert alert-error">{{ values.errors['team_name'] }}</p>
+
+                     {% endif %}
+                <br>
+                     <label for="league">League*</label>
+                     <br>
+                     <input type="text" name="league" value="{{ request.form['league'] }}" required="required"></input>
+                <br>
+
+                     <label for="overall">Overall*</label>
+                <br>
+                     <input type="number" name="overall" value="{{ request.form['overall'] }}"
+                            required="required"></input>
+                <br>
+                     {% if 'overall' in values.errors %}<span>
+                            <p class="alert alert-error">
+                                   {{ values.errors['overall'] }}
+                            </p>
+
+                     </span>{% endif %}
+                     <label for="attack">Attack*</label>
+                <br>
+                     <input type="number" name="attack" value="{{ request.form['attack'] }}"
+                            required="required"></input>
+                <br>
+                     {% if 'attack' in values.errors %}<span>
+
+                            <p class="alert alert-error">
+                                   {{ values.errors['attack'] }}
+                            </p>
+
+                     </span>{% endif %}
+
+
+                     <label for="midfield">Midfield*</label>
+                <br>
+                     <input type="number" name="midfield" value="{{ request.form['midfield'] }}"
+                            required="required"></input>
+                     {% if 'midfield' in values.errors %}
+                     <span>
+                            <p class="alert alert-error">{{ values.errors['midfield'] }}</p>
+                     </span>
+                     {% endif %}
+                <br>
+                     <label for="defense">Defense*</label>
+                <br>
+                     <input type="number" name="defense" value="{{ request.form['defense'] }}"
+                            required="required"></input>
+                <br>
+                     {% if 'defense' in values.errors %}
+                     <span>
+                            <p class="alert alert-error">
+                                   {{ values.errors['defense'] }}
+                            </p>
+                     </span>
+                     {% endif %}
+                
+                     <label for="international_prestige">International Prestige*</label>
+                <br>
+                     <select name="international_prestige" id="international_prestige">
+                            <option value=0>0</option>
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
+                            <option value=6>6</option>
+                            <option value=7>7</option>
+                            <option value=8>8</option>
+                            <option value=9>9</option>
+                            <option value=10>10</option>
+                     </select>
+                     <!-- <input type="number" name="international_prestige"
+                       value="{{ request.form['international_prestige'] }}" required="required"></input> -->
+                <br>
+
+                     <label for="domestic_prestige">Domestic Prestige*</label>
+                <br>
+                     <select name="domestic_prestige" id="domestic_prestige">
+                            <option value=0>0</option>
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
+                            <option value=6>6</option>
+                            <option value=7>7</option>
+                            <option value=8>8</option>
+                            <option value=9>9</option>
+                            <option value=10>10</option>
+                     </select>
+                     <!-- <input type="number" name="domestic_prestige"
+                       value="{{ request.form['domestic_prestige'] }}" required="required"></input> -->
+                <br>
+
+                     <label for="transfer_budget">Transfer Budget*</label>
+                <br>
+                     <input type="number" name="transfer_budget" value="{{ request.form['transfer_budget'] }}"
+                            required="required"></input>
+                <br>
+                     {% if 'transfer_budget' in values.errors %}
+                     <span>
+                            <p class="card-title">
+                                   {{ values.errors['transfer_budget'] }}
+                            </p>
+                     </span>
+                     {% endif %}
+
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        
+
+    </body>
+    {% endblock %}
+</html>
