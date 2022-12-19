@@ -32,7 +32,7 @@ class PlayerAttacking:
 
 
 class player_profile:
-    def __init__(self, profile_id, skill_moves, international_reputations, work_rate, body_type, preferred_foot, weak_foot, player_id):
+    def __init__(self,player_id, preferred_foot,weak_foot,skill_moves, international_reputations, work_rate, body_type,profile_id=None):
         self.profile_id = profile_id
         self.skill_moves = skill_moves
         self.international_reputations = international_reputations
@@ -44,7 +44,7 @@ class player_profile:
 
 
 class player_skills:
-    def __init__(self, skill_id, dribbling, curve, fk_accuracy, long_passing, ball_control, player_id):
+    def __init__(self, player_id,dribbling, curve, fk_accuracy, long_passing, ball_control,skill_id=None):
         self.skill_id = skill_id
         self.curve = curve
         self.dribbling = dribbling
@@ -55,7 +55,7 @@ class player_skills:
 
 
 class Goalkeeping:
-    def __init__(self, goalkeeping_id, diving, handling, kicking, positioning, reflexes,player_id):
+    def __init__(self, diving, handling, kicking, positioning, reflexes, player_id, goalkeeping_id=None):
         self.goalkeeping_id = goalkeeping_id
         self.player_id = player_id
         self.diving = diving
@@ -64,16 +64,9 @@ class Goalkeeping:
         self.positioning = positioning
         self.reflexes = reflexes
 
-    def set_goalkeeping_id(self, goalkeeping_id):
-        self.goalkeeping_id = goalkeeping_id
-
-    def get_player_id(self):
-        return self.player_id
-
 
 class Mentality:
-    def __init__(self, mentality_id, aggression, interceptions, positioning, vision, penalties, composure,  player_id):
-        self.mentality_id = mentality_id
+    def __init__(self, aggression, interceptions, positioning, vision, penalties, composure,  player_id, mentality_id=None):
         self.player_id = player_id
         self.aggression = aggression
         self.interceptions = interceptions
@@ -81,16 +74,11 @@ class Mentality:
         self.vision = vision
         self.penalties = penalties
         self.composure = composure
-
-    def set_mentality_id(self, mentality_id):
         self.mentality_id = mentality_id
-
-    def get_player_id(self):
-        return self.player_id
 
 
 class Power:
-    def __init__(self, power_id, strength, long_shots, shot_power, jumping, stamina, player_id):
+    def __init__(self, player_id, strength, long_shots, shot_power, jumping, stamina, power_id = None):
         self.power_id = power_id
         self.strength = strength
         self.long_shots = long_shots
@@ -105,14 +93,16 @@ class Power:
     def get_player_id(self):
         return self.player_id
 
-    def get_power(self):
+    def get_power(self, arg = ""):
+        if arg == "update":
+            return(self.strength, self.long_shots, self.shot_power, self.jumping, self.stamina, self.player_id, self.power_id)
         return(self.strength, self.long_shots, self.shot_power, self.jumping, self.stamina, self.player_id)
 
 
 class Movement:
-    def __init__(self, movement_id, reactions_id, balance, acceleration, sprint_speed, agility, player_id ):
+    def __init__(self, player_id , reactions, balance, acceleration, sprint_speed, agility, movement_id = None ):
         self.movement_id = movement_id
-        self.reactions_id = reactions_id
+        self.reactions = reactions
         self.balance = balance
         self.acceleration = acceleration
         self.sprint_speed = sprint_speed
@@ -125,5 +115,49 @@ class Movement:
     def get_player_id(self):
         return self.player_id
 
-    def get_movement(self):
-        return(self.reactions_id, self.balance, self.acceleration, self.sprint_speed, self.agility, self.player_id)
+    def get_movement(self, arg = ""):
+        if arg == "update":
+            return(self.reactions, self.balance, self.acceleration, self.sprint_speed, self.agility, self.player_id, self.movement_id)
+        return(self.reactions, self.balance, self.acceleration, self.sprint_speed, self.agility, self.player_id)
+
+class Team:
+    def __init__(self,team_name,league,overall,attack,midfield,defense,international_prestige,
+                domestic_prestige,transfer_budget,team_id=None):
+        self.team_id=team_id
+        self.team_name=team_name
+        self.league=league
+        self.overall=overall
+        self.attack=attack
+        self.midfield=midfield
+        self.defense=defense
+        self.international_prestige=international_prestige
+        self.domestic_prestige=domestic_prestige
+        self.transfer_budget=transfer_budget
+        
+    def set_team_id(self, team_id):
+        self.team_id = team_id
+
+    def get_team_id(self):
+        return self.team_id
+
+class Team_tactics:
+    def __init__(self,defensive_style,team_width,depth,offensive_style,width,players_in_box,corners,freekicks,team_id,tactic_id=None):
+        self.tactic_id=tactic_id
+        self.defensive_style=defensive_style
+        self.team_width=team_width
+        self.depth=depth
+        self.offensive_style=offensive_style
+        self.width=width
+        self.players_in_box=players_in_box
+        self.corners=corners
+        self.freekicks=freekicks
+        self.team_id=team_id
+        
+    def set_tactic_id(self, tactic_id):
+        self.tactic_id = tactic_id
+        
+    def get_tactic_id(self):
+        return self.tactic_id
+    
+    def get_team_id(self):
+        return self.team_id

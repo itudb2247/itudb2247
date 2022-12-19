@@ -1,0 +1,84 @@
+<meta charset="UTF-8">
+<META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="" width=device-width, initial-scale-1.0>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='../styles/teams.css')}}">
+{% include 'navbar.html' %}
+<div>
+
+    <div class="add_player_movement">
+        <div class="search-box">
+            <div>
+                <div class="card-body text-center">
+                    <h4 class="card-title">ADD PLAYER MOVEMENT</h5>
+                        <p class="card-text"></p>
+
+                        <form method="post">
+                            <label for="reactions">reactions</label>
+                            <br>
+                            <input type="number" name="reactions" value="{{ request.form['reactions'] }}"
+                                required="required"></input>
+                            {% if 'reactions' in values.errors %}
+                            <p class="alert alert-error">
+                                {{ values.errors['reactions'] }}
+                            </p>
+                            {% endif %}
+                            <br>
+
+                            <label for="balance">balance</label>
+                            <br>
+                            <input type="number" name="balance" value="{{ request.form['balance'] }}"
+                                required="required"></input>
+                            {% if 'balance' in values.errors %}
+                            <p class="alert alert-error">
+                                {{ values.errors['balance'] }}
+                            </p>
+                            {% endif %}
+                            <br>
+
+                            <label for="acceleration">acceleration</label>
+                            <br>
+                            <input type="number" name="acceleration" value="{{ request.form['acceleration'] }}"
+                                required="required"></input>
+                            {% if 'acceleration' in values.errors %}
+                            <p class="alert alert-error">
+                                {{ values.errors['acceleration'] }}
+                            </p>
+                            {% endif %}
+                            <br>
+
+                            <label for="sprint_speed">sprint_speed</label>
+                            <br>
+                            <input type="number" name="sprint_speed" value="{{ request.form['sprint_speed'] }}"
+                                required="required"></input>
+                            {% if 'sprint_speed' in values.errors %}
+                            <p class="alert alert-error">
+                                {{ values.errors['sprint_speed'] }}
+                            </p>
+                            {% endif %}
+                            <br>
+
+                            <label for="agility">agility</label>
+                            <br>
+                            <input type="number" name="agility" value="{{ request.form['agility'] }}"
+                                required="required"></input>
+                            {% if 'agility' in values.errors %}
+                            <p class="alert alert-error">
+                                {{ values.errors['agility'] }}
+                            </p>
+                            {% endif %}
+                            <br>
+
+
+                            <button type="submit">Submit</button>
+                        </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

@@ -1,41 +1,95 @@
-{% extends "layout.html" %}
-{% block title %}Add Player Attacking{% endblock %}
-{% block content %}
-<h1>ADD PLAYER ATTACKING</h1>
+<meta charset="UTF-8">
+<META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="" width=device-width, initial-scale-1.0>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='../styles/teams.css')}}">
+{% include 'navbar.html' %}
 <div>
-    <form action="" method="post" name="add_player_attacking">
-        <label for="player_id">player_id</label>
-        <br>
-        <input type="number" name="player_id" value="{{ request.form['player_id'] }}" required="required" /></input>
-        <br>
 
-        <label for="crossing">Crossing</label>
-        <br>
-        <input type="number" name="crossing" value="{{ request.form['crossing'] }}"></input>
-        <br>
+    <div class="add_player_attacking">
+        <div class="search-box">
+            <div>
+                <div class="card-body text-center">
+                  <h4 class="card-title">ADD PLAYER ATTACKING</h5>
+                  <p class="card-text"></p>
+                  
+                  <form action="" method="post" name="add_player_attacking">
+        
 
-        <label for="finishing">Finishing</label>
-        <br>
-        <input type="number" name="finishing" value="{{ request.form['finishing'] }}"></input>
-        <br>
+                    <label for="crossing">Crossing*</label>
+                    <br>
+                    <input type="number" name="crossing" value="{{ request.form['crossing'] }}" required="required" ></input>
+                    <br>
+                    {% if 'crossing' in values.errors %}
+                    <span>
+                        <p class="card-title">
+                            {{ values.errors['crossing'] }}
+                        </p>
+                    </span>
+                    {% endif %}
+            
+                    <label for="finishing">Finishing*</label>
+                    <br>
+                    <input type="number" name="finishing" value="{{ request.form['finishing'] }}" required="required" ></input>
+                    <br>
+                    {% if 'finishing' in values.errors %}
+                    <span>
+                        <p class="card-title">
+                            {{ values.errors['finishing'] }}
+                        </p>
+                    </span>
+                    {% endif %}
+            
+                    <label for="heading_accuracy">Heading Accuracy*</label>
+                    <br>
+                    <input type="number" name="heading_accuracy" value="{{ request.form['heading_accuracy'] }}" required="required" ></input>
+                    <br>
+                    {% if 'heading_accuracy' in values.errors %}
+                    <span>
+                        <p class="card-title">
+                            {{ values.errors['heading_accuracy'] }}
+                        </p>
+                    </span>
+                    {% endif %}
+            
+            
+                    <label for="short_passing">Short Passing*</label>
+                    <br>
+                    <input type="number" name="short_passing" value="{{ request.form['short_passing'] }}" required="required" ></input>
+                    <br>
+                    {% if 'short_passing' in values.errors %}
+                    <span>
+                        <p class="card-title">
+                            {{ values.errors['short_passing'] }}
+                        </p>
+                    </span>
+                    {% endif %}
+            
+            
+                    <label for="volleys">Volleys*</label>
+                    <br>
+                    <input type="number" name="volleys" value="{{ request.form['volleys'] }}" required="required" ></input>
+                    <br>
+                    {% if 'volleys' in values.errors %}
+                    <span>
+                        <p class="card-title">
+                            {{ values.errors['volleys'] }}
+                        </p>
+                    </span>
+                    {% endif %}
+            
+                    <br>
+                    <button type="submit">Submit</button>
+            
+                </form>
 
-        <label for="heading_accuracy">Heading Accuracy</label>
-        <br>
-        <input type="number" name="heading_accuracy" value="{{ request.form['heading_accuracy'] }}"></input>
-        <br>
+                </div>
+              </div>
+        </div>
+    </div>
 
-        <label for="short_passing">Short Passing</label>
-        <br>
-        <input type="number" name="short_passing" value="{{ request.form['short_passing'] }}"></input>
-        <br>
 
-        <label for="volleys">Volleys</label>
-        <br>
-        <input type="number" name="volleys" value="{{ request.form['volleys'] }}"></input>
-        <br>
 
-        <button type="submit">Submit</button>
-
-    </form>
+    
 </div>
-{% endblock %}
