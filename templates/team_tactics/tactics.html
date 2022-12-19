@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+             <meta name="viewport" content=""width=device-width, initial-scale-1.0>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+            <title>List Tactics</title>
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+            <div class='Team_tactics player-profile-cards' style="column-count: 7;">
+                <div class="custom-1">
+                    <h1 class>All Tactics</h1>
+                    <a class="nav-link" href="{{url_for('view_all_tactics')}}">View All Tactics</a>
+                    <a class="nav-link" href="{{url_for('view_team')}}">View All Teams</a>
+                    <a class="nav-link" href="{{ url_for('delete_team_tactics') }}">Delete Team Tactics</a>
+                    <a class="nav-link" href="{{ url_for('add_team_tactics') }}">Add Team Tactics</a>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Defensive Style</th>
+                        <th>Width</th>
+                        <th>Depth</th>
+                        <th>Offensive Style</th>
+                        <th>Width</th>
+                        <th>Tactics in Box</th>
+                        <th>Corners</th>
+                        <th>Freekicks</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for team_tactic in tactics %}
+                    <tr>
+                        <td>{{ team_tactic[1] }}</td>
+                        <td>{{ team_tactic[2] }}</td>
+                        <td>{{ team_tactic[3] }}</td>
+                        <td>{{ team_tactic[4] }}</td>
+                        <td>{{ team_tactic[5] }}</td>
+                        <td>{{ team_tactic[6] }}</td>
+                        <td>{{ team_tactic[7] }}</td>
+                        <td>{{ team_tactic[8] }}</td>
+                        <td>{{ team_tactic[9] }}</td>
+                        
+                    </tr>
+                    {% endfor %} 
+                    </tbody>
+                </table>
+            </div>
+
+    </body>
+</html>

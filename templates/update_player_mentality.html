@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+{% include 'navbar.html' %}
+{% block content %}
+<div class="search-box">
+    <form action="" method="post" name="update_player_mentality">
+        <label for="aggression">Agression</label>
+                <br>
+                <input type="number" name="aggression" value="{{ request.form['aggression'] }}"></input>
+                     {% if 'aggression' in values.errors %}
+                     <p class="alert alert-error">
+                     {{ values.errors['aggression'] }}
+                     </p>
+                     {% endif %}
+                <br>
+
+                <label for="interceptions">Interceptions</label>
+                <br>
+                <input type="number" name="interceptions" value="{{ request.form['interceptions'] }}"></input>
+                     {% if 'interceptions' in values.errors %}
+                     <div class="alert alert-error">
+                     {{ values.errors['interceptions'] }}
+                     </div>
+                     {% endif %}
+                <br>
+
+                <label for="positioning">Positioning</label>
+                <br>
+                <input type="number" name="positioning" value="{{ request.form['positioning'] }}"></input>
+                     {% if 'positioning' in values.errors %}
+                     <p class="alert alert-error">
+                     {{ values.errors['positioning'] }}
+                     </p>
+                     {% endif %}
+                <br>
+
+                <label for="vision">Vision</label>
+                <br>
+                <input type="number" name="vision" value="{{ request.form['vision'] }}"></input>
+                     {% if 'vision' in values.errors %}
+                     <p class="alert alert-error">
+                     {{ values.errors['vision'] }}
+                     </p>
+                     {% endif %}
+                <br>
+
+                <label for="penalties">Penalties</label>
+                <br>
+                <input type="number" name="penalties" value="{{ request.form['penalties'] }}"></input>
+                     {% if 'penalties' in values.errors %}
+                     <p class="alert alert-error">
+                     {{ values.errors['penalties'] }}
+                     </p>
+                     {% endif %}
+                <br>
+
+                <label for="composure">Composure</label>
+                <br>
+                <input type="number" name="composure" value="{{ request.form['composure'] }}"></input>
+                     {% if 'composure' in values.errors %}
+                     <p class="alert alert-error">
+                     {{ values.errors['composure'] }}
+                     </p>
+                     {% endif %}
+                <br>
+
+        <button type="submit">Submit</button>
+
+    </form>
+</div>
+{% endblock %}

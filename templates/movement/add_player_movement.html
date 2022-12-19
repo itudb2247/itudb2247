@@ -7,66 +7,65 @@
 {% include 'navbar.html' %}
 <div>
 
-    <div class="add_player_profile">
+    <div class="add_player_movement">
         <div class="search-box">
             <div>
                 <div class="card-body text-center">
-                    <h4 class="card-title">ADD PLAYER GOALKEEPING</h5>
+                    <h4 class="card-title">ADD PLAYER MOVEMENT</h5>
                         <p class="card-text"></p>
 
                         <form method="post">
-
-                            <label for="diving">Diving</label>
+                            <label for="reactions">reactions</label>
                             <br>
-                            <input type="number" name="diving" value="{{ request.form['diving'] }}"
+                            <input type="number" name="reactions" value="{{ request.form['reactions'] }}"
                                 required="required"></input>
-                            {% if 'diving' in values.errors %}
+                            {% if 'reactions' in values.errors %}
                             <p class="alert alert-error">
-                                {{ values.errors['diving'] }}
+                                {{ values.errors['reactions'] }}
                             </p>
                             {% endif %}
                             <br>
 
-                            <label for="handling">Handling</label>
+                            <label for="balance">balance</label>
                             <br>
-                            <input type="number" name="handling" value="{{ request.form['handling'] }}"
+                            <input type="number" name="balance" value="{{ request.form['balance'] }}"
                                 required="required"></input>
-                            {% if 'handling' in values.errors %}
+                            {% if 'balance' in values.errors %}
                             <p class="alert alert-error">
-                                {{ values.errors['handling'] }}
+                                {{ values.errors['balance'] }}
                             </p>
                             {% endif %}
                             <br>
 
-                            <label for="kicking">Kicking</label>
+                            <label for="acceleration">acceleration</label>
                             <br>
-                            <input type="number" name="kicking" value="{{ request.form['kicking'] }}"
+                            <input type="number" name="acceleration" value="{{ request.form['acceleration'] }}"
                                 required="required"></input>
-                            {% if 'kicking' in values.errors %}
+                            {% if 'acceleration' in values.errors %}
                             <p class="alert alert-error">
-                                {{ values.errors['kicking'] }}
+                                {{ values.errors['acceleration'] }}
                             </p>
                             {% endif %}
                             <br>
 
-                            <label for="positioning">Positioning</label>
+                            <label for="sprint_speed">sprint_speed</label>
                             <br>
-                            <input type="number" name="positioning" value="{{ request.form['positioning'] }}"
+                            <input type="number" name="sprint_speed" value="{{ request.form['sprint_speed'] }}"
                                 required="required"></input>
-                            {% if 'positioning' in values.errors %}
+                            {% if 'sprint_speed' in values.errors %}
                             <p class="alert alert-error">
-                                {{ values.errors['positioning'] }}
+                                {{ values.errors['sprint_speed'] }}
                             </p>
                             {% endif %}
                             <br>
 
-                            <label for="reflexes">Reflexes</label>
+                            <label for="agility">agility</label>
                             <br>
-                            <input type="number" name="reflexes" value="{{ request.form['reflexes'] }}"
+                            <input type="number" name="agility" value="{{ request.form['agility'] }}"
                                 required="required"></input>
-                            {% if 'reflexes' in values.errors %}
+                            {% if 'agility' in values.errors %}
                             <p class="alert alert-error">
-                                {{ values.errors['reflexes'] }}
+                                {{ values.errors['agility'] }}
                             </p>
                             {% endif %}
                             <br>
@@ -82,3 +81,4 @@
 
 
 </div>
+

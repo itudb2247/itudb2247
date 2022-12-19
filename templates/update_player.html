@@ -1,93 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content=""width=device-width, initial-scale-1.0>
-            <title>Update Player</title>
-    </head>
-    <body>
-        <div>
 
-            <form method="post">
-                <br>
-        
-                <label for="date_of_birth">Date of Birth (MM/DD/YYYY)</label>
-                <br>
-                <input type="text" name="date_of_birth"
-                       value="{{ request.form['date_of_birth'] }}"></input>
-                <br>
+<head>
+    <meta charset="UTF-8">
+    <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Update Player</title>
+</head>
 
-                <label for="height">height</label>
-                <br>
-                <input type="text" name="height"
-                       value="{{ request.form['height'] }}"></input>
-                <br>
+<body>
+    {% include 'navbar.html' %}
 
-                <label for="weight">weight</label>
-                <br>
-                <input type="text" name="weight"
-                       value="{{ request.form['weight'] }}"></input>
-                <br>
+    <div class="search-box">
+                    <h4 class="card-title">{{ request.form['name'] }}</h5>
+                        <form action="" method="post" name="update_player">
+                            <h3>Update Player</h3>
+                            <h3>{{name}}</h3>
 
-                <label for="overall_rating">overall_rating</label>
-                <br>
-                <input type="text" name="overall_rating"
-                       value="{{ request.form['overall_rating'] }}"></input>
-                <br>
+                            <label for="name">Name</label>
+                            <br>
+                            <input type="text" name="name" value="{{ request.form['name'] }}" /></input>
+                            <br>
 
-                <label for="potential_rating">potential_rating</label>
-                <br>
-                <input type="text" name="potential_rating"
-                       value="{{ request.form['potential_rating'] }}"></input>
-                <br>
+                            <label for="date_of_birth">Date of Birth (MM/DD/YYYY)</label>
+                            <br>
+                            <input type="date" name="date_of_birth" value="{{ request.form['date_of_birth'] }}"></input>
+                            <br>
 
-                <label for="best_position">best_position</label>
-                <br>
-                <input type="text" name="best_position"
-                       value="{{ request.form['best_position'] }}"></input>
-                <br>
+                            <label for="height">Height</label>
+                            <br>
+                            <input type="number" name="height" value="{{ request.form['height'] }}"></input>
+                            <br>
+                            {% if 'height' in values.errors %}
+                            <span>
+                                <p class="card-title">
+                                    {{ values.errors['height'] }}
+                                </p>
+                            </span>
+                            {% endif %}
+                            
+                            <label for="weight">Weight</label>
+                            <br>
+                            <input type="number" name="weight" value="{{ request.form['weight'] }}"></input>
+                            <br>
+                            {% if 'weight' in values.errors %}
+                            <span>
+                                <p class="card-title">
+                                    {{ values.errors['weight'] }}
+                                </p>
+                            </span>
+                            {% endif %}
 
-                <label for="best_overall_rating">best_overall_rating</label>
-                <br>
-                <input type="text" name="best_overall_rating"
-                       value="{{ request.form['best_overall_rating'] }}"></input>
-                <br>
+                            <label for="potential_rating">Potential Rating</label>
+                            <br>
+                            <input type="number" name="potential_rating"
+                                value="{{ request.form['potential_rating'] }}"></input>
+                            <br>
+                            {% if 'potential_rating' in values.errors %}
+                            <span>
+                                <p class="card-title">
+                                    {{ values.errors['potential_rating'] }}
+                                </p>
+                            </span>
+                            {% endif %}
 
-                <label for="value">value</label>
-                <br>
-                <input type="text" name="value"
-                       value="{{ request.form['value'] }}"></input>
-                <br>
+                            <label for="overall_rating">Overall Rating</label>
+                            <br>
+                            <input type="number" name="overall_rating"
+                                value="{{ request.form['overall_rating'] }}"></input>
+                            <br>
+                            {% if 'overall_rating' in values.errors %}
+                            <span>
+                                <p class="card-title">
+                                    {{ values.errors['overall_rating'] }}
+                                </p>
+                            </span>
+                            {% endif %}
+                            <label for="best_position">Best Position</label>
+                            <br> 
+                            <input type="text" name="best_position" value="{{ request.form['best_position'] }}"></input>
+                            <br>
+                    
+                            <label for="best_overall_rating">Best Overall Rating</label>
+                            <br>
+                            <input type="number" name="best_overall_rating" value="{{ request.form['best_overall_rating'] }}"></input>
+                            <br>
+                            {% if 'best_overall_rating' in values.errors %}
+                            <span>
+                                <p class="card-title">
+                                    {{ values.errors['best_overall_rating'] }}
+                                </p>
+                            </span>
+                            {% endif %}
+                    
+                            <label for="value">Value</label>
+                            <br>
+                            <input type="number" name="value" value="{{ request.form['value'] }}"></input>
+                            <br>
+                            {% if 'value' in values.errors %}
+                            <span>
+                                <p class="card-title">
+                                    {{ values.errors['value'] }}
+                                </p>
+                            </span>
+                            {% endif %}
+                    
+                            <label for="wage">Wage</label>
+                            <br>
+                            <input type="number" name="wage" value="{{ request.form['wage'] }}"></input>
+                            <br>
+                            {% if 'wage' in values.errors %}
+                            <span>
+                                <p class="card-title">
+                                    {{ values.errors['wage'] }}
+                                </p>
+                            </span>
+                            {% endif %}
+                    
+                            <label for="team_id">Team Id</label>
+                            <br>
+                            <input type="number" name="team_id" value="{{ request.form['team_id'] }}"></input>
+                            <br>
+                    
+                            <label for="url">Url</label>
+                            <br>
+                            <input type="text" name="url" value="{{ request.form['url'] }}"></input>
+                            <br>
+                            
+                    
+                            <label for="nationality">Nationality</label>
+                            <br>
+                            <input type="text" name="nationality" value="{{ request.form['nationality'] }}"></input>
+                            <br>
+                            <br>
+                            <button type="submit" class="card-title">Submit</button>
 
-                <label for="wage">wage</label>
-                <br>
-                <input type="text" name="wage"
-                       value="{{ request.form['wage'] }}"></input>
-                <br>
+                        </form>
+                </div>
 
-                <label for="player_image_url">player_image_url</label>
-                <br>
-                <input type="text" name="player_image_url"
-                       value="{{ request.form['player_image_url'] }}"></input>
-                <br>
+</body>
 
-                <label for="team_id">team_id</label>
-                <br>
-                <input type="text" name="team_id"
-                       value="{{ request.form['team_id'] }}"></input>
-                <br>
-
-                <label for="nationality">nationality</label>
-                <br>
-                <input type="text" name="nationality"
-                       value="{{ request.form['nationality'] }}"></input>
-                <br>
-
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-        
-
-    </body>
 </html>

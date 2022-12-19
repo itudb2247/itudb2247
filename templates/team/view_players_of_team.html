@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+            <title>Players</title>
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        <div class="Player">
+            <div class="custom-1">
+                <h1 class>All Players In Team</h1>
+                <a class="nav-link" href="{{url_for('view_all_tactics')}}">View All Players</a>
+                <a class="nav-link" href="{{url_for('view_team')}}">View All Team</a>
+                
+            </div>
+
+            <div class="card-columns">
+                {% for player in players %}
+                <div class="card">
+                    <div class="card-body text-center">
+                      <h4 class="card-title" alt="player">{{ player[1] }}</h5>
+                      <p class="card-text">Date Of Birth {{ player[2] }}</p>
+                      <p class="card-text">Height {{ player[3] }}</p>
+                      <p class="card-text">Weight {{ player[4] }}</p>
+                      <p class="card-text">Overall Rating {{ player[5] }}</p>
+                      <p class="card-text">Potential Rating {{ player[6] }}</p>
+                      <p class="card-text">Best Position {{ player[7] }}</p>
+                      <p class="card-text">Best Overall Rating {{ player[8] }}</p>
+                      <p class="card-text">Value {{ player[9] }}</p>
+                      <p class="card-text">Wage {{ player[10] }}</p>
+                      <p class="card-text">Player Image Url {{ player[11] }}</p>
+                      <p class="card-text">Team Name {{request.args.get('team_name')}}</p>
+                      <p class="card-text">Nationality {{ player[13] }}</p>
+                      <button><a href="{{url_for('player_full_profile',player_id=player[0])}}">View</a></button>
+                      <button><a href="{{ url_for('update_player', player_id = player[0]) }}">Update</a></button>
+                      <button><a href="{{ url_for('delete_player', player_id = player[0], team_id=player[12]) }}">Delete</a>   </button> 
+                    
+                    </div>
+                </div>
+                {% endfor %} 
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,62 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content=""width=device-width, initial-scale-1.0>
-            <title>Add Player Mentality</title>
-    </head>
-    <body>
-        <div>
+<meta charset="UTF-8">
+<META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="" width=device-width, initial-scale-1.0>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='../styles/teams.css')}}">
+{% include 'navbar.html' %}
+     <div>
 
-            <form method="post">
-                <label for="player_id">Player ID</label>
-                <br>
-                <input type="text" name="player_id"
-                       value="{{ request.form['player_id'] }}"></input>
-                <br>
 
-                <label for="aggression">Agression</label>
-                <br>
-                <input type="text" name="aggression"
-                       value="{{ request.form['aggression'] }}"></input>
-                <br>
+          <div class="add_player_profile">
+               <div class="search-box">
+                    <div>
+                         <div class="card-body text-center">
+                              <h4 class="card-title">ADD PLAYER MENTALITY</h5>
+                              <p class="card-text"></p>
 
-                <label for="interceptions">Interceptions</label>
-                <br>
-                <input type="text" name="interceptions"
-                       value="{{ request.form['interceptions'] }}"></input>
-                <br>
+                              <form method="post">
 
-                <label for="positioning">Positioning</label>
-                <br>
-                <input type="text" name="positioning"
-                       value="{{ request.form['positioning'] }}"></input>
-                <br>
+                                   <label for="aggression">Agression</label>
+                                   <br>
+                                   <input type="number" name="aggression" value="{{ request.form['aggression'] }}"
+                                        required="required"></input>
+                                   {% if 'aggression' in values.errors %}
+                                   <p>
+                                        {{ values.errors['aggression'] }}
+                                   </p>
+                                   {% endif %}
+                                   <br>
 
-                <label for="vision">Vision</label>
-                <br>
-                <input type="text" name="vision"
-                       value="{{ request.form['vision'] }}"></input>
-                <br>
+                                   <label for="interceptions">Interceptions</label>
+                                   <br>
+                                   <input type="number" name="interceptions" value="{{ request.form['interceptions'] }}"
+                                        required="required"></input>
+                                   {% if 'interceptions' in values.errors %}
+                                   <p>
+                                        {{ values.errors['interceptions'] }}
+                                   </p>
+                                   {% endif %}
+                                   <br>
 
-                <label for="penalties">Penalties</label>
-                <br>
-                <input type="text" name="penalties"
-                       value="{{ request.form['penalties'] }}"></input>
-                <br>
+                                   <label for="positioning">Positioning</label>
+                                   <br>
+                                   <input type="number" name="positioning" value="{{ request.form['positioning'] }}"
+                                        required="required"></input>
+                                   {% if 'positioning' in values.errors %}
+                                   <p>
+                                        {{ values.errors['positioning'] }}
+                                   </p>
+                                   {% endif %}
+                                   <br>
 
-                <label for="composure">Composure</label>
-                <br>
-                <input type="text" name="composure"
-                       value="{{ request.form['composure'] }}"></input>
-                <br>
-        
-                
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-        
+                                   <label for="vision">Vision</label>
+                                   <br>
+                                   <input type="number" name="vision" value="{{ request.form['vision'] }}"
+                                        required="required"></input>
+                                   {% if 'vision' in values.errors %}
+                                   <p>
+                                        {{ values.errors['vision'] }}
+                                   </p>
+                                   {% endif %}
+                                   <br>
 
-    </body>
-</html>
+                                   <label for="penalties">Penalties</label>
+                                   <br>
+                                   <input type="number" name="penalties" value="{{ request.form['penalties'] }}"
+                                        required="required"></input>
+                                   {% if 'penalties' in values.errors %}
+                                   <p>
+                                        {{ values.errors['penalties'] }}
+                                   </p>
+                                   {% endif %}
+                                   <br>
+
+                                   <label for="composure">Composure</label>
+                                   <br>
+                                   <input type="number" name="composure" value="{{ request.form['composure'] }}"
+                                        required="required"></input>
+                                   {% if 'composure' in values.errors %}
+                                   <p>
+                                        {{ values.errors['composure'] }}
+                                   </p>
+                                   {% endif %}
+                                   <br>
+                                   <br>
+
+
+                                   <button type="submit">Submit</button>
+                              </form>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+
+     </div>
