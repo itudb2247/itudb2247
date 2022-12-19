@@ -11,7 +11,7 @@ duplicate issue in input files are solved. Database functions are tested. All cl
 css and html files are created. view functions are created and application configuration setting are adjusted. 
 
 10-11.12.2022
-add and  delete html pages and view functions created.
+add and  delete html pages and add, delete view functions created.
 
 14.12.2022
 login and logout pages are created, add and delete functions are tested.
@@ -23,4 +23,4 @@ update view functions are created and frontend of the html pages are edited.
 login pages updated. Form validation function created.
 
 18.12.2022
-add pages linked and frontend updated.
+add pages linked and frontend updated. Validation functions for team created. Update, add, delete methods were linked with frontend. Frontend updated. Some bugs fixed. 
