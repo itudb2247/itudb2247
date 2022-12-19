@@ -1,0 +1,85 @@
+<meta charset="UTF-8">
+<META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="" width=device-width, initial-scale-1.0>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='../styles/teams.css')}}">
+{% include 'navbar.html' %}
+<div>
+
+    <div class="add_player_power">
+        <div class="search-box">
+            <div>
+                <div class="card-body text-center">
+                    <h4 class="card-title">ADD PLAYER POWER</h5>
+                        <p class="card-text"></p>
+
+                        <form method="post">
+                            <label for="strength">strength</label>
+                            <br>
+                            <input type="number" name="strength" value="{{ request.form['strength'] }}"
+                                required="required"></input>
+                            {% if 'strength' in values.errors %}
+                            <p class="alert alert-error">
+                                {{ values.errors['strength'] }}
+                            </p>
+                            {% endif %}
+                            <br>
+
+                            <label for="long_shots">long_shots</label>
+                            <br>
+                            <input type="number" name="long_shots" value="{{ request.form['long_shots'] }}"
+                                required="required"></input>
+                            {% if 'long_shots' in values.errors %}
+                            <p class="alert alert-error">
+                                {{ values.errors['long_shots'] }}
+                            </p>
+                            {% endif %}
+                            <br>
+
+                            <label for="shot_power">shot_power</label>
+                            <br>
+                            <input type="number" name="shot_power" value="{{ request.form['shot_power'] }}"
+                                required="required"></input>
+                            {% if 'shot_power' in values.errors %}
+                            <p class="alert alert-error">
+                                {{ values.errors['shot_power'] }}
+                            </p>
+                            {% endif %}
+                            <br>
+
+                            <label for="jumping">jumping</label>
+                            <br>
+                            <input type="number" name="jumping" value="{{ request.form['jumping'] }}"
+                                required="required"></input>
+                            {% if 'jumping' in values.errors %}
+                            <p class="alert alert-error">
+                                {{ values.errors['jumping'] }}
+                            </p>
+                            {% endif %}
+                            <br>
+
+                            <label for="stamina">stamina</label>
+                            <br>
+                            <input type="number" name="stamina" value="{{ request.form['stamina'] }}"
+                                required="required"></input>
+                            {% if 'stamina' in values.errors %}
+                            <p class="alert alert-error">
+                                {{ values.errors['stamina'] }}
+                            </p>
+                            {% endif %}
+                            <br>
+                            <br>
+
+
+                            <button type="submit">Submit</button>
+                        </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

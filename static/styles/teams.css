@@ -1,0 +1,182 @@
+
+body {
+  background: url("https://wallpaperaccess.com/full/692032.jpg") no-repeat center center fixed;
+  background-color: whitesmoke;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+nav{
+  position: sticky;
+}
+
+nav ul{
+  margin:0;
+  padding:0;
+  display:flex;
+}
+
+nav ul li{
+  list-style:none;
+  margin:0 20px;
+  transition:1s;
+}
+
+nav ul li a{
+  display: block;
+  position:relative;
+  text-decoration:none;
+  padding:5px;
+  font-size:14px;
+  font-family: sans-serif;
+  color:#fff;
+  text-transform:uppercase;
+  transition:0.5s;
+}
+
+nav ul:hover li a{
+  transform:scale(1);
+  opacity:0.6;
+  filter:blur(1px);
+}
+
+nav ul li a:hover{
+  transform:scale(1);
+  opacity:1;
+  filter:blur(0);
+  text-decoration:none;
+  color:#fff;
+}
+
+nav ul li a:before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#0b2868;
+  transition:0.5s;
+  transform-origin:right;
+  transform:scaleX(0);
+  z-index:-5;
+}
+nav ul li a:hover:before{
+  transition:transform 0.5s;
+  transform-origin:left;
+  transform:scaleX(1);
+}
+.navbar-nav{
+  margin: 20px;
+}
+
+
+
+.card {
+  padding:50px;
+  border-radius: 15px;
+  position: relative;
+  background: whitesmoke;
+  min-width: 180px;
+  display: inline-block;
+  min-height: 180px;
+  }
+.card:hover {
+    transform: translateY(-8px);
+    transition: 0.8s ease-out;
+    background-color: #0b2868d0;
+    box-shadow: 0 8px 16px 0 rgba(216, 59, 59, 0.8);
+}
+.card-title {
+  color: rgb(0, 0, 0);
+  font-weight: 300;
+  left: 20px;
+  top: 50px;
+}
+
+.card-columns{
+  margin-top: 80px;
+  margin: 80px;
+  grid-gap: 80px;
+}
+
+.card a{
+  text-decoration: none;
+  color:whitesmoke;
+  text-transform: uppercase;
+}
+
+.card:hover a{
+  color: whitesmoke;
+  text-decoration: none;
+}
+.card:hover p{
+  color: whitesmoke;
+  text-decoration: none;
+}
+.card:hover h4{
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+.custom-1{
+  background-color:whitesmoke;
+  padding: 35px;
+
+}
+.custom-1 a{
+  color: rgb(0, 0, 0);
+  display: inline-block;
+  float: right;
+}
+.custom-1 h1{
+  display: inline-block;
+}
+
+table th{
+  color:#ffffff;
+  background-color: #0b2868; 
+}
+table td{
+  color:#0b2868;
+  background-color:rgba(245, 245, 245, 0.829);
+}
+
+.search-box{
+  width: 50%;
+  background-color: whitesmoke;
+  text-align: center;
+  border-radius: 15px;
+  padding: 80px;
+  
+  margin: auto;
+  margin-top: 20px;
+}
+
+.player-profile-cards li{
+  border-bottom: 1px solid tomato;
+  background-color:rgba(245, 245, 245, 0.829);
+}
+
+button{
+  transition-duration: 0.4s;
+  color:whitesmoke;
+  background-color:#0b2868;
+  border-radius: 5px;
+border:none;}
+
+.card:hover button{
+  color:#0b2868;
+  background-color: whitesmoke;
+}
+
+.card:hover button a{
+  color:#0b2868;
+}
+
+h3{
+  color:#0b2868;
+}
+
+h3:hover{
+  color:#efeaff;
+}

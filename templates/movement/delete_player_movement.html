@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <META HTTP-EQUİV="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content=""width=device-width, initial-scale-1.0>
+            <title>Delete Player Movement</title>
+    </head>
+    <body>
+        <div>
+
+            <form action="{{ url_for('delete_player_movement') }}" method="POST">
+                <label for="name">Movement ID</label>
+                <br>
+                <input type="text" name="movement_id"
+                       value="{{ request.form['movement_id'] }}"></input>
+                <br>
+
+                <input type="submit" value="Delete Movement"
+                        class="btn btn-danger btn-sm"
+                        onclick="return confirm('Are you sure you want to delete this movement?')">
+            </form>
+
+        </div>
+        
+    </body>
+</html>
