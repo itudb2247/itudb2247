@@ -1,9 +1,9 @@
 int_player_id,str_player_name,str_positions,dt_date_of_birth,int_height,int_weight,int_overall_rating,int_potential_rating,str_best_position,int_best_overall_rating,int_value,int_wage,str_player_image_url,str_nationality,int_team_id
-1,Lionel Andrés Messi Cuccittini,"RW, ST, CF",6/24/1987,170,72,93,93,RW,93,103500000,560000,https://cdn.sofifa.com/players/158/023/21_120.png,Argentina,5
-2,Cristiano Ronaldo dos Santos Aveiro,"ST, LW",2/5/1985,187,83,92,92,ST,92,63000000,220000,https://cdn.sofifa.com/players/020/801/21_120.png,Portugal,6
-3,Jan Oblak,GK,1/7/1993,188,87,91,93,GK,91,120000000,125000,https://cdn.sofifa.com/players/200/389/21_120.png,Slovenia,8
-4,Kevin De Bruyne,"CAM, CM",6/28/1991,181,70,91,91,CAM,91,129000000,370000,https://cdn.sofifa.com/players/192/985/21_120.png,Belgium,2
-5,Neymar da Silva Santos Júnior,"LW, CAM",2/5/1992,175,68,91,91,LW,91,132000000,270000,https://cdn.sofifa.com/players/190/871/21_120.png,Brazil,7
+1,Lionel Andrés Messi Cuccittini,"RW, ST, CF",6/24/1987,170,72,93,93,RW,93,103500000,560000,https://cdn.sofifa.com/players/158/023/21_120.png,Argentina,5.0
+2,Cristiano Ronaldo dos Santos Aveiro,"ST, LW",2/5/1985,187,83,92,92,ST,92,63000000,220000,https://cdn.sofifa.com/players/020/801/21_120.png,Portugal,6.0
+3,Jan Oblak,GK,1/7/1993,188,87,91,93,GK,91,120000000,125000,https://cdn.sofifa.com/players/200/389/21_120.png,Slovenia,8.0
+4,Kevin De Bruyne,"CAM, CM",6/28/1991,181,70,91,91,CAM,91,129000000,370000,https://cdn.sofifa.com/players/192/985/21_120.png,Belgium,2.0
+5,Neymar da Silva Santos Júnior,"LW, CAM",2/5/1992,175,68,91,91,LW,91,132000000,270000,https://cdn.sofifa.com/players/190/871/21_120.png,Brazil,7.0
 6,Robert Lewandowski,ST,8/21/1988,184,80,91,91,ST,91,111000000,240000,https://cdn.sofifa.com/players/188/545/21_120.png,Poland,4.0
 7,Kylian Mbappé Lottin,"ST, LW, RW",12/20/1998,178,73,90,95,ST,91,185500000,160000,https://cdn.sofifa.com/players/231/747/21_120.png,France,7.0
 8,Alisson Ramsés Becker,GK,10/2/1992,191,91,90,91,GK,90,102000000,160000,https://cdn.sofifa.com/players/212/831/21_120.png,Brazil,1.0

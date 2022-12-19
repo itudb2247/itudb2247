@@ -1,7 +1,7 @@
 
 body {
   background: url("https://wallpaperaccess.com/full/692032.jpg") no-repeat center center fixed;
-  background-color: #efeaff;
+  background-color: whitesmoke;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
@@ -72,19 +72,18 @@ nav ul li a:hover:before{
 
 
 .card {
-  /* Add shadows to create the "card" effect */
   padding:50px;
   border-radius: 15px;
   position: relative;
-  background: white;
+  background: whitesmoke;
   min-width: 180px;
   display: inline-block;
   min-height: 180px;
   }
 .card:hover {
-    transform: translateY(-20px);
-    transition: 0.4s ease-out;
-    background-color: #0b2868;
+    transform: translateY(-8px);
+    transition: 0.8s ease-out;
+    background-color: #0b2868d0;
     box-shadow: 0 8px 16px 0 rgba(216, 59, 59, 0.8);
 }
 .card-title {
@@ -102,7 +101,7 @@ nav ul li a:hover:before{
 
 .card a{
   text-decoration: none;
-  color: #0b2868;
+  color:whitesmoke;
   text-transform: uppercase;
 }
 
@@ -135,9 +134,49 @@ nav ul li a:hover:before{
 
 table th{
   color:#ffffff;
-  background-color: #0b2868;
+  background-color: #0b2868; 
 }
 table td{
   color:#0b2868;
   background-color:rgba(245, 245, 245, 0.829);
+}
+
+.search-box{
+  width: 50%;
+  background-color: whitesmoke;
+  text-align: center;
+  border-radius: 15px;
+  padding: 80px;
+  
+  margin: auto;
+  margin-top: 20px;
+}
+
+.player-profile-cards li{
+  border-bottom: 1px solid tomato;
+  background-color:rgba(245, 245, 245, 0.829);
+}
+
+button{
+  transition-duration: 0.4s;
+  color:whitesmoke;
+  background-color:#0b2868;
+  border-radius: 5px;
+border:none;}
+
+.card:hover button{
+  color:#0b2868;
+  background-color: whitesmoke;
+}
+
+.card:hover button a{
+  color:#0b2868;
+}
+
+h3{
+  color:#0b2868;
+}
+
+h3:hover{
+  color:#efeaff;
 }

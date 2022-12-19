@@ -11,13 +11,13 @@
     </head>
     <body>
         {% include 'navbar.html' %}
-            <div class='Team_tactics'>
+            <div class='Team_tactics player-profile-cards' style="column-count: 7;">
                 <div class="custom-1">
                     <h1 class>All Tactics</h1>
-                    <a class="nav-link" href="{{url_for('views.view_all_tactics')}}">View All Tactics</a>
-                    <a class="nav-link" href="{{url_for('views.view_team')}}">View All Teams</a>
-                    <a class="nav-link" href="{{ url_for('views.delete_team_tactics') }}">Delete Team Tactics</a>
-                    <a class="nav-link" href="{{ url_for('views.add_team_tactics') }}">Add Team Tactics</a>
+                    <a class="nav-link" href="{{url_for('view_all_tactics')}}">View All Tactics</a>
+                    <a class="nav-link" href="{{url_for('view_team')}}">View All Teams</a>
+                    <a class="nav-link" href="{{ url_for('delete_team_tactics') }}">Delete Team Tactics</a>
+                    <a class="nav-link" href="{{ url_for('add_team_tactics') }}">Add Team Tactics</a>
                 </div>
                 <table class="table">
                     <thead>

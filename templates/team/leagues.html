@@ -21,7 +21,8 @@
                     <div class="card-body text-center">
                       <h4 class="card-title">{{ Team[0] }}</h5>
                       <p class="card-text"></p>
-                      <a href="{{url_for('views.view_teams_of_league',league=Team[0])}}" class="stretched-link" >View Teams</a>
+                      <button>
+                        <a href="{{url_for('view_teams_of_league',league=Team[0])}}" class="stretched-link" >View Teams</a></button>
                     </div>
                   </div>
                 {% endfor %} 

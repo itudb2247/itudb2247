@@ -17,8 +17,7 @@
         <div class="Team">
             <div class="custom-1">
                 <h1 class>All Teams In League</h1>
-                <a class="nav-link" href="{{url_for('views.view_all_tactics')}}">View All Tactics</a>
-                <a class="nav-link" href="{{url_for('views.view_team')}}">View All Teams</a>
+                <a class="nav-link" href="{{url_for('view_team')}}">View All Teams</a>
                 
             </div>
             <div class="card-columns">
@@ -37,8 +36,11 @@
                       <p class="card-text">Domestic Prestige {{ Team[8] }}</p>
                       <p class="card-text">Transfer Budget {{ Team[9] }}</p>
                       
-                      <a href="{{url_for('views.view_players_of_team',team_id=Team[0])}}"  >View Players</a>
-                      <a href="{{url_for('views.view_tactics',team_id=Team[0])}}"  >View Tactics</a>
+     
+                      <button> <a href="{{url_for('view_players_of_team',team_id=Team[0])}}"  >View Players</a></button>
+                      <button> <a href="{{url_for('view_tactics',team_id=Team[0])}}"  >View Tactics</a></button>
+                      <button> <a href="{{url_for('update_team',team_id=Team[0])}}"  >Update Team</a></button>
+                      <button><a href="{{url_for('delete_team',team_id=Team[0], league=Team[2])}}"  >Delete Team</a> </button>
                     </div>
                   </div>
                 {% endfor %} 
